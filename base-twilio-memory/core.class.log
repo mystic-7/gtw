@@ -1,0 +1,537 @@
+[handleMsg]:  {
+  SmsMessageSid: 'SMfa9ab5c27aa777f17747cab49c35f30b',
+  NumMedia: '0',
+  ProfileName: 'S.A',
+  SmsSid: 'SMfa9ab5c27aa777f17747cab49c35f30b',
+  WaId: '584247182145',
+  SmsStatus: 'received',
+  Body: 'Hola',
+  To: 'whatsapp:+14155238886',
+  NumSegments: '1',
+  ReferralNumMedia: '0',
+  MessageSid: 'SMfa9ab5c27aa777f17747cab49c35f30b',
+  AccountSid: 'AC520009ca0a7a922be37ef85be3670a16',
+  From: 'whatsapp:+584247182145',
+  ApiVersion: '2010-04-01',
+  from: '584247182145',
+  to: '14155238886',
+  body: 'Hola'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_2f86d661-636f-4655-a14f-f30a8bc6129b',
+  keyword: 'key_b55c8e1b-0743-4f83-ae7c-6c5309167880',
+  answer: '¡Gracias por contactar a *Prosein*! 🙌🏼.',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '36775a84be33a498d60ccea671cba0bd'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_f1e038f5-87c6-4233-98a7-458dfcfe0678',
+  keyword: 'ans_2f86d661-636f-4655-a14f-f30a8bc6129b',
+  answer: 'Indíquenos tu Nombre y Apellido',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'e15107f2f2a7903283e9c728362cc511'
+}
+[handleMsg]:  {
+  SmsMessageSid: 'SM6a8e192ef4ac5705aa72b63c24509e4d',
+  NumMedia: '0',
+  ProfileName: 'S.A',
+  SmsSid: 'SM6a8e192ef4ac5705aa72b63c24509e4d',
+  WaId: '584247182145',
+  SmsStatus: 'received',
+  Body: 'Jsjsjsj',
+  To: 'whatsapp:+14155238886',
+  NumSegments: '1',
+  ReferralNumMedia: '0',
+  MessageSid: 'SM6a8e192ef4ac5705aa72b63c24509e4d',
+  AccountSid: 'AC520009ca0a7a922be37ef85be3670a16',
+  From: 'whatsapp:+584247182145',
+  ApiVersion: '2010-04-01',
+  from: '584247182145',
+  to: '14155238886',
+  body: 'Jsjsjsj'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_84de1ba0-4e7d-4284-9c70-97d61a03dd57',
+  keyword: 'ans_f1e038f5-87c6-4233-98a7-458dfcfe0678',
+  answer: 'Indíquenos tu Correo',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '33301b1a2b2bb5e5c7e96fbc6edf807c'
+}
+[handleMsg]:  {
+  SmsMessageSid: 'SMa20f149381206cdec5a177257f021d93',
+  NumMedia: '0',
+  ProfileName: 'S.A',
+  SmsSid: 'SMa20f149381206cdec5a177257f021d93',
+  WaId: '584247182145',
+  SmsStatus: 'received',
+  Body: '1jdj',
+  To: 'whatsapp:+14155238886',
+  NumSegments: '1',
+  ReferralNumMedia: '0',
+  MessageSid: 'SMa20f149381206cdec5a177257f021d93',
+  AccountSid: 'AC520009ca0a7a922be37ef85be3670a16',
+  From: 'whatsapp:+584247182145',
+  ApiVersion: '2010-04-01',
+  from: '584247182145',
+  to: '14155238886',
+  body: '1jdj'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_c8da790e-e330-4f1e-adf6-7d49af1edc10',
+  keyword: 'ans_84de1ba0-4e7d-4284-9c70-97d61a03dd57',
+  answer: 'Cuéntanos, ¿cómo podemos ayudarte? Escriba el número de la opción que desee:\n' +
+    '👉 *1* Información: Horarios y Ubicaciones\n' +
+    '👉 *2* Catálogo\n' +
+    '👉 *3* Cotizar productos\n' +
+    '👉 *4* Promociones\n' +
+    '👉 *5* Disponibilidad de un Producto\n' +
+    '👉 *6* Reclamos y Sugerencias',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 2000,
+    idle: null,
+    ref: null,
+    nested: [ [Object], [Object], [Object], [Object], [Object], [Object] ],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '2faa59901ac18e21ac36ea8d9a73c9e2'
+}
+[handleMsg]:  {
+  SmsMessageSid: 'SM146b54ad0d26177d9b6f069d5deee05e',
+  NumMedia: '0',
+  ProfileName: 'S.A',
+  SmsSid: 'SM146b54ad0d26177d9b6f069d5deee05e',
+  WaId: '584247182145',
+  SmsStatus: 'received',
+  Body: '1jdjdj',
+  To: 'whatsapp:+14155238886',
+  NumSegments: '1',
+  ReferralNumMedia: '0',
+  MessageSid: 'SM146b54ad0d26177d9b6f069d5deee05e',
+  AccountSid: 'AC520009ca0a7a922be37ef85be3670a16',
+  From: 'whatsapp:+584247182145',
+  ApiVersion: '2010-04-01',
+  from: '584247182145',
+  to: '14155238886',
+  body: '1jdjdj'
+}
+[handleMsg]:  {
+  SmsMessageSid: 'SM8f7374a0416166065129044c0b01a797',
+  NumMedia: '0',
+  ProfileName: 'S.A',
+  SmsSid: 'SM8f7374a0416166065129044c0b01a797',
+  WaId: '584247182145',
+  SmsStatus: 'received',
+  Body: '1',
+  To: 'whatsapp:+14155238886',
+  NumSegments: '1',
+  ReferralNumMedia: '0',
+  MessageSid: 'SM8f7374a0416166065129044c0b01a797',
+  AccountSid: 'AC520009ca0a7a922be37ef85be3670a16',
+  From: 'whatsapp:+584247182145',
+  ApiVersion: '2010-04-01',
+  from: '584247182145',
+  to: '14155238886',
+  body: '1'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_9958f76c-7323-4871-8e6b-c8f0f4a37b6c',
+  keyword: 'key_68f7c9ab-c0ee-424a-ba7e-cbb4584b1334',
+  answer: 'Por favor indique el número la ciudad o estado de interes para obtener información de las sucursales disponibles:\n' +
+    '\n' +
+    '1. Caracas\n' +
+    '2. Miranda\n' +
+    '3. La Guaira\n' +
+    '4. Aragua\n' +
+    '5. Carabobo\n' +
+    '6. Lara\n' +
+    '7. Portuguesa\n' +
+    '8. Barinas\n' +
+    '9. Falcón\n' +
+    '10. Zulia\n' +
+    '11. Trujillo\n' +
+    '12. Mérida\n' +
+    '13. Anzoátegui\n' +
+    '14. Nueva Esparta\n' +
+    '15. Bolívar',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 2000,
+    idle: null,
+    ref: null,
+    nested: [
+      [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object]
+    ],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '08501aece8b72d48d07369d898877f4b'
+}
+[handleMsg]:  {
+  SmsMessageSid: 'SM15db199f64ed8c2fa9b8c2bb167ea137',
+  NumMedia: '0',
+  ProfileName: 'S.A',
+  SmsSid: 'SM15db199f64ed8c2fa9b8c2bb167ea137',
+  WaId: '584247182145',
+  SmsStatus: 'received',
+  Body: '8',
+  To: 'whatsapp:+14155238886',
+  NumSegments: '1',
+  ReferralNumMedia: '0',
+  MessageSid: 'SM15db199f64ed8c2fa9b8c2bb167ea137',
+  AccountSid: 'AC520009ca0a7a922be37ef85be3670a16',
+  From: 'whatsapp:+584247182145',
+  ApiVersion: '2010-04-01',
+  from: '584247182145',
+  to: '14155238886',
+  body: '8'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_cb9b9935-5471-4497-8018-1c80bb8a97c4',
+  keyword: 'key_2b31ef60-e7b9-4cb1-9495-41f8d78b57bf',
+  answer: 'Por favor indica el numero de la sucursal de la cual deseas tener información:\n' +
+    '\n' +
+    '\n' +
+    '1. Av. Libertad\n' +
+    '2. Alto Barinas',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'c9b3303d661dbbbfb16db58f176e6f9a'
+}
+[handleMsg]:  {
+  SmsMessageSid: 'SMa723c82cf121e00be60f717fd0c31455',
+  NumMedia: '0',
+  ProfileName: 'S.A',
+  SmsSid: 'SMa723c82cf121e00be60f717fd0c31455',
+  WaId: '584247182145',
+  SmsStatus: 'received',
+  Body: '2',
+  To: 'whatsapp:+14155238886',
+  NumSegments: '1',
+  ReferralNumMedia: '0',
+  MessageSid: 'SMa723c82cf121e00be60f717fd0c31455',
+  AccountSid: 'AC520009ca0a7a922be37ef85be3670a16',
+  From: 'whatsapp:+584247182145',
+  ApiVersion: '2010-04-01',
+  from: '584247182145',
+  to: '14155238886',
+  body: '2'
+}
+[handleMsg]:  {
+  SmsMessageSid: 'SM7a5d327e09269e6ede5602b2e6b82a20',
+  NumMedia: '0',
+  ProfileName: 'S.A',
+  SmsSid: 'SM7a5d327e09269e6ede5602b2e6b82a20',
+  WaId: '584247182145',
+  SmsStatus: 'received',
+  Body: 'Hola',
+  To: 'whatsapp:+14155238886',
+  NumSegments: '1',
+  ReferralNumMedia: '0',
+  MessageSid: 'SM7a5d327e09269e6ede5602b2e6b82a20',
+  AccountSid: 'AC520009ca0a7a922be37ef85be3670a16',
+  From: 'whatsapp:+584247182145',
+  ApiVersion: '2010-04-01',
+  from: '584247182145',
+  to: '14155238886',
+  body: 'Hola'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_2f86d661-636f-4655-a14f-f30a8bc6129b',
+  keyword: 'key_b55c8e1b-0743-4f83-ae7c-6c5309167880',
+  answer: '¡Gracias por contactar a *Prosein*! 🙌🏼.',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: false
+  },
+  refSerialize: '36775a84be33a498d60ccea671cba0bd'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_f1e038f5-87c6-4233-98a7-458dfcfe0678',
+  keyword: 'ans_2f86d661-636f-4655-a14f-f30a8bc6129b',
+  answer: 'Indíquenos tu Nombre y Apellido',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'e15107f2f2a7903283e9c728362cc511'
+}
+[handleMsg]:  {
+  SmsMessageSid: 'SM16cef49cc77ef6ca035c4ba5efedde25',
+  NumMedia: '0',
+  ProfileName: 'S.A',
+  SmsSid: 'SM16cef49cc77ef6ca035c4ba5efedde25',
+  WaId: '584247182145',
+  SmsStatus: 'received',
+  Body: 'Wuuw',
+  To: 'whatsapp:+14155238886',
+  NumSegments: '1',
+  ReferralNumMedia: '0',
+  MessageSid: 'SM16cef49cc77ef6ca035c4ba5efedde25',
+  AccountSid: 'AC520009ca0a7a922be37ef85be3670a16',
+  From: 'whatsapp:+584247182145',
+  ApiVersion: '2010-04-01',
+  from: '584247182145',
+  to: '14155238886',
+  body: 'Wuuw'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_84de1ba0-4e7d-4284-9c70-97d61a03dd57',
+  keyword: 'ans_f1e038f5-87c6-4233-98a7-458dfcfe0678',
+  answer: 'Indíquenos tu Correo',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '33301b1a2b2bb5e5c7e96fbc6edf807c'
+}
+[handleMsg]:  {
+  SmsMessageSid: 'SM40745b7ba8b88ece4522c4c4947a3f5f',
+  NumMedia: '0',
+  ProfileName: 'S.A',
+  SmsSid: 'SM40745b7ba8b88ece4522c4c4947a3f5f',
+  WaId: '584247182145',
+  SmsStatus: 'received',
+  Body: 'Iwkw',
+  To: 'whatsapp:+14155238886',
+  NumSegments: '1',
+  ReferralNumMedia: '0',
+  MessageSid: 'SM40745b7ba8b88ece4522c4c4947a3f5f',
+  AccountSid: 'AC520009ca0a7a922be37ef85be3670a16',
+  From: 'whatsapp:+584247182145',
+  ApiVersion: '2010-04-01',
+  from: '584247182145',
+  to: '14155238886',
+  body: 'Iwkw'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_c8da790e-e330-4f1e-adf6-7d49af1edc10',
+  keyword: 'ans_84de1ba0-4e7d-4284-9c70-97d61a03dd57',
+  answer: 'Cuéntanos, ¿cómo podemos ayudarte? Escriba el número de la opción que desee:\n' +
+    '👉 *1* Información: Horarios y Ubicaciones\n' +
+    '👉 *2* Catálogo\n' +
+    '👉 *3* Cotizar productos\n' +
+    '👉 *4* Promociones\n' +
+    '👉 *5* Disponibilidad de un Producto\n' +
+    '👉 *6* Reclamos y Sugerencias',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 2000,
+    idle: null,
+    ref: null,
+    nested: [ [Object], [Object], [Object], [Object], [Object], [Object] ],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '2faa59901ac18e21ac36ea8d9a73c9e2'
+}
+[handleMsg]:  {
+  SmsMessageSid: 'SMd0d19ab9bb882e3959eed713fd20b965',
+  NumMedia: '0',
+  ProfileName: 'S.A',
+  SmsSid: 'SMd0d19ab9bb882e3959eed713fd20b965',
+  WaId: '584247182145',
+  SmsStatus: 'received',
+  Body: '4',
+  To: 'whatsapp:+14155238886',
+  NumSegments: '1',
+  ReferralNumMedia: '0',
+  MessageSid: 'SMd0d19ab9bb882e3959eed713fd20b965',
+  AccountSid: 'AC520009ca0a7a922be37ef85be3670a16',
+  From: 'whatsapp:+584247182145',
+  ApiVersion: '2010-04-01',
+  from: '584247182145',
+  to: '14155238886',
+  body: '4'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_9958f76c-7323-4871-8e6b-c8f0f4a37b6c',
+  keyword: 'key_68f7c9ab-c0ee-424a-ba7e-cbb4584b1334',
+  answer: 'Por favor indique el número la ciudad o estado de interes para obtener información de las sucursales disponibles:\n' +
+    '\n' +
+    '1. Caracas\n' +
+    '2. Miranda\n' +
+    '3. La Guaira\n' +
+    '4. Aragua\n' +
+    '5. Carabobo\n' +
+    '6. Lara\n' +
+    '7. Portuguesa\n' +
+    '8. Barinas\n' +
+    '9. Falcón\n' +
+    '10. Zulia\n' +
+    '11. Trujillo\n' +
+    '12. Mérida\n' +
+    '13. Anzoátegui\n' +
+    '14. Nueva Esparta\n' +
+    '15. Bolívar',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 2000,
+    idle: null,
+    ref: null,
+    nested: [
+      [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object]
+    ],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '08501aece8b72d48d07369d898877f4b'
+}
+[handleMsg]:  {
+  SmsMessageSid: 'SMb4d9f6223746ae50093dc66b607b12b4',
+  NumMedia: '0',
+  ProfileName: 'S.A',
+  SmsSid: 'SMb4d9f6223746ae50093dc66b607b12b4',
+  WaId: '584247182145',
+  SmsStatus: 'received',
+  Body: '8',
+  To: 'whatsapp:+14155238886',
+  NumSegments: '1',
+  ReferralNumMedia: '0',
+  MessageSid: 'SMb4d9f6223746ae50093dc66b607b12b4',
+  AccountSid: 'AC520009ca0a7a922be37ef85be3670a16',
+  From: 'whatsapp:+584247182145',
+  ApiVersion: '2010-04-01',
+  from: '584247182145',
+  to: '14155238886',
+  body: '8'
+}
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_cb9b9935-5471-4497-8018-1c80bb8a97c4',
+  keyword: 'key_2b31ef60-e7b9-4cb1-9495-41f8d78b57bf',
+  answer: 'Por favor indica el numero de la sucursal de la cual deseas tener información:\n' +
+    '\n' +
+    '\n' +
+    '1. Av. Libertad\n' +
+    '2. Alto Barinas',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'c9b3303d661dbbbfb16db58f176e6f9a'
+}
+[handleMsg]:  {
+  SmsMessageSid: 'SMb0935d54705cfc71df784cfac4ce102e',
+  NumMedia: '0',
+  ProfileName: 'S.A',
+  SmsSid: 'SMb0935d54705cfc71df784cfac4ce102e',
+  WaId: '584247182145',
+  SmsStatus: 'received',
+  Body: '1',
+  To: 'whatsapp:+14155238886',
+  NumSegments: '1',
+  ReferralNumMedia: '0',
+  MessageSid: 'SMb0935d54705cfc71df784cfac4ce102e',
+  AccountSid: 'AC520009ca0a7a922be37ef85be3670a16',
+  From: 'whatsapp:+584247182145',
+  ApiVersion: '2010-04-01',
+  from: '584247182145',
+  to: '14155238886',
+  body: '1'
+}
