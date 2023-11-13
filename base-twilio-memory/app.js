@@ -10,11 +10,11 @@ const MockAdapter = require('@bot-whatsapp/database/mock');
 const { EVENTS } = require('@bot-whatsapp/bot');
 
 const flowCcsRespuesta = addKeyword(['1'], { sensitive: true }).addAnswer([
-  'Pronto te va a contactar un miembro de esta surcursal 👩‍🚀',
+  'Pronto te va a contactar un miembro de esta surcursal',
 ]);
 
 const flowDespedida = addKeyword(['2'], { sensitive: true }).addAnswer([
-  'Gracias por contactarnos, desde Prosein siempre buscamos ofrecerle la mejor solución✨',
+  'Gracias por contactarnos, desde Prosein siempre buscamos ofrecerle la mejor solución',
   'Recuerda que siempre estamos para ti.',
   'Síguenos en nuestras rede sociales',
   'https://www.instagram.com/proseinvenezuela/?hl=es-la',
@@ -23,6 +23,7 @@ const flowDespedida = addKeyword(['2'], { sensitive: true }).addAnswer([
   'https://prosein.com.ve/',
 ]);
 
+var 
 var today = new Date();
 var date =
   today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
