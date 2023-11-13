@@ -23,7 +23,6 @@ const flowDespedida = addKeyword(['2'], { sensitive: true }).addAnswer([
   'https://prosein.com.ve/',
 ]);
 
-var 
 var today = new Date();
 var date =
   today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
