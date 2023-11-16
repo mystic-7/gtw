@@ -122,6 +122,7 @@ const flowElBosque = addKeyword(['3'], { sensitive: true , delay:delays})
     },
     [flowCcsRespuesta, flowDespedida]
   );
+
 const flowLasMercedes = addKeyword(['4'], { sensitive: true , delay:delays })
   .addAnswer(
     'Las Mercedes: Calle París, entre New York y Caroní, Quinta Prosein. Horario de lunes a viernes de 8:30am a 5:30pm y sábado de 9:30am a 5:00pm.'
@@ -179,6 +180,7 @@ const flowLosNaranjos = addKeyword(['5'], { sensitive: true , delay:delays })
     },
     [flowCcsRespuesta, flowDespedida]
   );
+  
 const flowCatia = addKeyword(['6'], { sensitive: true , delay:delays })
   .addAnswer(
     'Catia: Calle Panamericana, entre calle Chile y Bolivia, galpón n°30. Horario de lunes a viernes de 8:00am a 5:00pm y sábado de 9:00am a 2:00pm. \n\nSi deseas contactarte para una cotización, promociones y disponibilidad de productos, este es el contacto de la tienda: https://wa.me/+584242723741'
@@ -274,7 +276,7 @@ const flowMiranda = addKeyword(['2'], { sensitive: true , delay:delays }).addAns
       }
     } else if (ctx.body == '2') {
       flowDynamic(
-        'Los Teques | San Antonio: Av. Chaid Torbay, edificio Industrial Campestre, piso 1, local 1, sector ind. Las Minas. San Antonio de los Altos. Al lado de autolavado Twister. Horario de lunes a sábado 8:00am a 2:00pm.'
+        'Los Teques | San Antonio: Av. Chaid Torbay, edificio Industrial Campestre, piso 1, local 1, sector ind. Las Minas. San Antonio de los Altos. Al lado de autolavado Twister. Horario de lunes a sábado 8:00am a 2:00pm.\n\nSi deseas contactarte para una cotización, promociones y disponibilidad de productos, este es el contacto de la tienda: https://wa.me/+584242980957'
       );
       const myState = state.getMyState();
       if (myState.motivo === '1') {
@@ -408,12 +410,13 @@ const flowAragua = addKeyword(['4'], { sensitive: true , delay:delays }).addAnsw
 
 const flowCarabobo = addKeyword(['5'], { sensitive: true , delay:delays })
   .addAnswer([
-    'En Carabobo estamos ubicados en Valencia: Av. Monseñor Adams, calle 161, Urbanización El Viñedo, casa 104-61. Horario de lunes a viernes 8:30am a 5:00pm y sábado de 8:30am a 2:00pm. \n\nSi deseas contactarte para una cotización, promociones y disponibilidad de productos, este es el contacto de la tienda: https://wa.me/+584244618284',
+    'En Carabobo estamos ubicados en Valencia: Av. Monseñor Adams, calle 161, Urbanización El Viñedo, casa 104-61. Horario de lunes a viernes 8:30am a 5:00pm y sábado de 8:30am a 2:00pm. \n\nSi deseas contactarte para una cotización, promociones y disponibilidad de productos, este es el contacto de la tienda: https://wa.me/+584244619284',
   ])
   .addAction((ctx, { fallBack, flowDynamic, state }) => {
     const myState = state.getMyState();
     console.log(myState.motivo);
-
+    console.log(myState.cotizar);
+    console.log(myState.ciudad);
     if (myState.motivo === '1') {
       flowDynamic(
         'Si deseas contactarnos para obtener una cotización, conocer nuestras promociones y verificar la disponibilidad de productos, este es el contacto de la tienda'
@@ -889,7 +892,7 @@ const flowTiendas = addKeyword(['1', '3', '4', '5'], {
   (ctx, { state,fallBack,flowDynamic }) => {
     if (ctx.body === '1' || ctx.body === '2' || ctx.body === '3' || ctx.body === '4' || ctx.body === '5' || ctx.body === '6' || ctx.body === '7' || ctx.body === '8' ||  ctx.body === '9' ||ctx.body === '10' || ctx.body === '11' || ctx.body === '12' || ctx.body === '13' || ctx.body === '14' || ctx.body === '15'
     ) {
-      
+      state.update({ ciudad: ctx.body });
     } else {
       flowDynamic([
         {
@@ -933,6 +936,7 @@ const flowCatalogoNovedades2023 = addKeyword(['1'], { sensitive: true , delay:de
   (ctx, { state,fallBack,flowDynamic }) => {
     if (ctx.body === '1' || ctx.body === '2') {
       state.update({ motivo: ctx.body });
+      state.update({ cotizar: ctx.body });
     } else {
       flowDynamic([
         {
@@ -959,6 +963,7 @@ const flowCatalogoBrasil = addKeyword(['2'], { sensitive: true , delay:delays})
   (ctx, { state,fallBack,flowDynamic }) => {
     if (ctx.body === '1' || ctx.body === '2') {
       state.update({ motivo: ctx.body });
+      state.update({ cotizar: ctx.body });
     } else {
       flowDynamic([
         {
@@ -985,6 +990,7 @@ const flowCatalogoVinil = addKeyword(['3'], { sensitive: true , delay:delays})
   (ctx, { state,fallBack,flowDynamic }) => {
     if (ctx.body === '1' || ctx.body === '2') {
       state.update({ motivo: ctx.body });
+      state.update({ cotizar: ctx.body });
     } else {
       flowDynamic([
         {
@@ -1011,6 +1017,7 @@ const flowCatalogoGeneral = addKeyword(['4'], { sensitive: true , delay:delays})
   (ctx, { state,fallBack,flowDynamic }) => {
     if (ctx.body === '1' || ctx.body === '2') {
       state.update({ motivo: ctx.body });
+      state.update({ cotizar: ctx.body });
     } else {
       flowDynamic([
         {
@@ -1039,7 +1046,7 @@ const flowCatalogo = addKeyword(['2'], { sensitive: true , delay:delays })
     async (ctx, { fallBack, flowDynamic }) => {
       if (ctx.body === '1' || ctx.body === '2' || ctx.body === '3' || ctx.body === '4'
     ) {
-
+      state.update({ catalogo: ctx.body });
     } else {
       flowDynamic([
         {
