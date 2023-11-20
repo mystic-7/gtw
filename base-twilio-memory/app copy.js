@@ -836,6 +836,7 @@ const flowBolivar = addKeyword(['15'], { sensitive: true , delay:delays })
   ])
   .addAction((ctx, { fallBack, flowDynamic, state }) => {
     const myState = state.getMyState();
+    console.log(myState.motivo);
     airtableAnswers(myState,ctx)
 
     if (myState.motivo === '1') {
@@ -935,6 +936,7 @@ const flowCatalogoNovedades2023 = addKeyword(['1'], { sensitive: true , delay:de
   { capture: true,delay: delays },
   (ctx, { state,fallBack,flowDynamic }) => {
     if (ctx.body === '1' || ctx.body === '2') {
+      state.update({ motivo: ctx.body });
       state.update({ cotizar: ctx.body });
     } else {
       flowDynamic([
@@ -961,6 +963,7 @@ const flowCatalogoBrasil = addKeyword(['2'], { sensitive: true , delay:delays})
   { capture: true,delay: delays },
   (ctx, { state,fallBack,flowDynamic }) => {
     if (ctx.body === '1' || ctx.body === '2') {
+      state.update({ motivo: ctx.body });
       state.update({ cotizar: ctx.body });
     } else {
       flowDynamic([
@@ -987,6 +990,7 @@ const flowCatalogoVinil = addKeyword(['3'], { sensitive: true , delay:delays})
   { capture: true,delay: delays },
   (ctx, { state,fallBack,flowDynamic }) => {
     if (ctx.body === '1' || ctx.body === '2') {
+      state.update({ motivo: ctx.body });
       state.update({ cotizar: ctx.body });
     } else {
       flowDynamic([
@@ -1013,6 +1017,7 @@ const flowCatalogoGeneral = addKeyword(['4'], { sensitive: true , delay:delays})
   { capture: true,delay: delays },
   (ctx, { state,fallBack,flowDynamic }) => {
     if (ctx.body === '1' || ctx.body === '2') {
+      state.update({ motivo: ctx.body });
       state.update({ cotizar: ctx.body });
     } else {
       flowDynamic([
@@ -1039,7 +1044,7 @@ const flowCatalogo = addKeyword(['2'], { sensitive: true , delay:delays })
       '4. General',
     ],
     { capture: true, delay: delays },
-    async (ctx, { fallBack, flowDynamic ,state}) => {
+    async (ctx, { fallBack, flowDynamic }) => {
       if (ctx.body === '1' || ctx.body === '2' || ctx.body === '3' || ctx.body === '4'
     ) {
       state.update({ catalogo: ctx.body });
@@ -1115,7 +1120,7 @@ const flowRegistro = addKeyword('USUARIOS_NO_REGISTRADOS')
 )
 
 const flowOpciones = addKeyword('LISTA_DE_TIENDASSS').addAnswer(
-  textoopciones,
+  msjFlowOpciones,
   { capture: true,delay: delays },
   (ctx, { state,fallBack,flowDynamic }) => {
     if (ctx.body === '1' || ctx.body === '2' || ctx.body === '3' || ctx.body === '4' || ctx.body === '5' || ctx.body === '6') {
@@ -1152,20 +1157,24 @@ const flowPrincipal = addKeyword('hola')
 
 const main = async () => {
 
-  const adapterDB = new MockAdapter();
-  const adapterFlow = createFlow([flowPrincipal,flowgracias,flowOpciones,flowRegistro]);
+  const flows = await airtableGetFlows()
 
-  const adapterProvider = createProvider(TwilioProvider, {
-    accountSid: 'AC520009ca0a7a922be37ef85be3670a16',
-    authToken: 'cb9e75ddc49a4cf3cb4966c0161e7211',
-    vendorNumber: '+14155238886',
-  });
+  const textoopciones = flows.records[1].fields.Texto
 
-  createBot({
-    flow: adapterFlow,
-    provider: adapterProvider,
-    database: adapterDB,
-  });
+  // const adapterDB = new MockAdapter();
+  // const adapterFlow = createFlow([flowPrincipal,flowgracias,flowOpciones,flowRegistro]);
+
+  // const adapterProvider = createProvider(TwilioProvider, {
+  //   accountSid: 'AC520009ca0a7a922be37ef85be3670a16',
+  //   authToken: 'cb9e75ddc49a4cf3cb4966c0161e7211',
+  //   vendorNumber: '+14155238886',
+  // });
+
+  // createBot({
+  //   flow: adapterFlow,
+  //   provider: adapterProvider,
+  //   database: adapterDB,
+  // });
 };
 
 main();

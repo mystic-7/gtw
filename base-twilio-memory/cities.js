@@ -1,6 +1,11 @@
 const delays = 4000;
 const delays_f = 1500;
-const { addKeyword } = require("@bot-whatsapp/bot");
+const {
+  createBot,
+  createProvider,
+  createFlow,
+  addKeyword,
+} = require('@bot-whatsapp/bot');
 const { flowDespedida } = require("./other_modules");
 
 const flowCcsRespuesta = addKeyword(["1"], {
@@ -9,10 +14,10 @@ const flowCcsRespuesta = addKeyword(["1"], {
 }).addAnswer(["Pronto te va a contactar un miembro de esta surcursal"]);
 
 const flowBoleitaNorte = addKeyword(["1"], { sensitive: true, delay: delays })
-  .addAnswer(
+.addAnswer(
     "Boleíta Norte: Calle Sanatorio del Ávila, C.C. Ciudad Center nivel 1, Boleíta Norte. Horario de lunes a viernes de 8:30am a 5:30pm y sábado de 9:30am a 5:00pm."
   )
-  .addAnswer(
+.addAnswer(
     [
       "¿Deseas recibir una cotización, conocer nuestras promociones o verificar la disponibilidad de productos en nuestra tienda?",
       "👉 *1* Si",
