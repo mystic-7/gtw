@@ -43,13 +43,19 @@ function airtableAnswers(myState,ctx) {
     "Cookie",
     "brw=brwANjCWu7Pu0BFn0; AWSALB=29fABRZxwFwYM9gpP6AE7pgXMo0Q2pyDchvwjUVMC4C0Xx0Vthryuhep5rYnKKEk3iYvxSX0l8toSue5q0gJ6HHJ1rJkUS4BcKnaWBW8PMaPpv4YDX+HhHjxM9Tz; AWSALBCORS=29fABRZxwFwYM9gpP6AE7pgXMo0Q2pyDchvwjUVMC4C0Xx0Vthryuhep5rYnKKEk3iYvxSX0l8toSue5q0gJ6HHJ1rJkUS4BcKnaWBW8PMaPpv4YDX+HhHjxM9Tz"
     );
+    console.log('entro')
+    console.log(myState)
     var id = ctx.WaId ? ctx.WaId : '0';
     var motivo = myState.motivo ? myState.motivo : '0';
     var cotizar = myState.cotizar ? myState.cotizar : '0';
     var ciudad = myState.ciudad ? myState.ciudad : '0';
     var catalogo = myState.catalogo ? myState.catalogo : '0';
-
-
+    var caracas = myState.caracas ? myState.caracas : '0';
+    var barinas = myState.barinas ? myState.barinas : '0';
+    var merida = myState.merida ? myState.merida : '0';
+    var zulia = myState.zulia ? myState.zulia : '0';
+    var aragua = myState.aragua ? myState.aragua : '0';
+    var miranda = myState.miranda ? myState.miranda : '0';
     var raw = JSON.stringify({
         
     fields: {
@@ -57,7 +63,13 @@ function airtableAnswers(myState,ctx) {
         motivo: `${motivo}`,
         cotizar: `${cotizar}`,
         ciudad: `${ciudad}`,
-        catalogo: `${catalogo}`
+        catalogo: `${catalogo}`,
+        caracas: `${caracas}`,
+        barinas: `${barinas}`,
+        merida: `${merida}`,
+        zulia: `${zulia}`,
+        aragua: `${aragua}`,
+        miranda: `${miranda}`,
     },
     });
     console.log(raw)
@@ -88,7 +100,6 @@ async function airtableGetFlows() {
 
     var response = await fetch("https://api.airtable.com/v0/appbSfEIG0OB8UdVa/tblQeHrH14o89qJx4/", requestOptions)
     var text = await response.text();
-
     return JSON.parse(text)
 };
 

@@ -1114,26 +1114,34 @@ const flowRegistro = addKeyword('USUARIOS_NO_REGISTRADOS')
   }
 )
 
-const flowOpciones = addKeyword('LISTA_DE_TIENDASSS').addAnswer(
-  textoopciones,
-  { capture: true,delay: delays },
-  (ctx, { state,fallBack,flowDynamic }) => {
-    if (ctx.body === '1' || ctx.body === '2' || ctx.body === '3' || ctx.body === '4' || ctx.body === '5' || ctx.body === '6') {
-      state.update({ motivo: ctx.body });
-    } else {
-      flowDynamic([
-        {
-          body: `Disculpa, elige una de las opciones para poder ayudarte.`
-          ,
-        },{
-          delay:delays_f
-        },
-      ]);
-      fallBack();
+const flowOpciones = addKeyword(['LISTA_DE_TIENDASSS'], {
+  sensitive: true , delay:delays,
+}).addAction(async (_, { flowDynamic }) => {
+  const flows = await airtableGetFlows()
+
+  var textoopciones = flows.records[1].fields.Texto;
+  return flowDynamic(textoopciones)
+}).addAction({ capture: true }, async (ctx, { flowDynamic,gotoFlow,state }) => {
+  if (ctx.body === '1' || ctx.body === '2' || ctx.body === '3' || ctx.body === '4' || ctx.body === '5' || ctx.body === '6') {
+    state.update({ motivo: ctx.body });
+    const opcion = parseInt(ctx.body);
+    state.update({ motivo: ctx.body });
+    switch (opcion) {
+      case 1: return gotoFlow(flowTiendas);
+      case 2: return gotoFlow(flowCatalogo);
+      case 3: return gotoFlow(flowTiendas);
+      case 4: return gotoFlow(flowTiendas);
+      case 5: return gotoFlow(flowTiendas);
+      case 6: return gotoFlow(flowReclamosSugerencias);
     }
-  },
-  [flowCatalogo, flowTiendas, flowReclamosSugerencias]
-);
+  } else {
+    const flows = await airtableGetFlows()
+    var textodisculpa = flows.records[2].fields.Texto;
+    await flowDynamic(textodisculpa);
+    return gotoFlow(flowOpciones);
+  }
+
+});
 
 const flowPrincipal = addKeyword('hola')
   .addAnswer('¡Gracias por contactar a *Prosein*! 🙌🏼.', null, async (ctx,{gotoFlow,flowDynamic}) => {
