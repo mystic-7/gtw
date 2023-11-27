@@ -4,22 +4,24 @@
     "description": "",
     "main": "app.js",
     "scripts": {
+        "prestart": "npx eslint . --no-ignore",
         "pre-copy": "cd .. && npm run  copy.lib base-twilio-memory",
         "start": "node app.js"
     },
     "keywords": [],
     "dependencies": {
-        "body-parser": "^1.20.1",
-        "polka": "^0.5.2",
-        "twilio": "3.84.1",
         "@bot-whatsapp/bot": "latest",
         "@bot-whatsapp/cli": "latest",
         "@bot-whatsapp/database": "latest",
-        "@bot-whatsapp/provider": "latest"
+        "@bot-whatsapp/provider": "^0.1.2",
+        "axios": "^1.6.2",
+        "body-parser": "^1.20.1",
+        "polka": "^0.5.2",
+        "twilio": "^3.40.0"
     },
     "devDependencies": {
-        "eslint-plugin-bot-whatsapp": "latest",
-        "eslint": "^8.52.0"
+        "eslint": "^8.52.0",
+        "eslint-plugin-bot-whatsapp": "latest"
     },
     "author": "",
     "license": "ISC"

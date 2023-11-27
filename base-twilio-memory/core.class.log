@@ -1,45 +1,8 @@
-[handleMsg]:  {
-  SmsMessageSid: 'SMd54c264cb8d377186865287e9042836b',
-  NumMedia: '0',
-  ProfileName: 'S.A',
-  SmsSid: 'SMd54c264cb8d377186865287e9042836b',
-  WaId: '584247182145',
-  SmsStatus: 'received',
-  Body: 'hola',
-  To: 'whatsapp:+14155238886',
-  NumSegments: '1',
-  ReferralNumMedia: '0',
-  MessageSid: 'SMd54c264cb8d377186865287e9042836b',
-  AccountSid: 'AC520009ca0a7a922be37ef85be3670a16',
-  From: 'whatsapp:+584247182145',
-  ApiVersion: '2010-04-01',
-  from: '584247182145',
-  to: '14155238886',
-  body: 'hola'
-}
-[handleMsg]:  {
-  SmsMessageSid: 'SM8aef7b28072eb8d2cfde6b39d73ae9f2',
-  NumMedia: '0',
-  ProfileName: 'S.A',
-  SmsSid: 'SM8aef7b28072eb8d2cfde6b39d73ae9f2',
-  WaId: '584247182145',
-  SmsStatus: 'received',
-  Body: '6',
-  To: 'whatsapp:+14155238886',
-  NumSegments: '1',
-  ReferralNumMedia: '0',
-  MessageSid: 'SM8aef7b28072eb8d2cfde6b39d73ae9f2',
-  AccountSid: 'AC520009ca0a7a922be37ef85be3670a16',
-  From: 'whatsapp:+584247182145',
-  ApiVersion: '2010-04-01',
-  from: '584247182145',
-  to: '14155238886',
-  body: '6'
-}
+[handleMsg]:  { from: '584241604932', to: '14155238886', body: 'hola' }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_e64a6803-40c8-4a96-ac00-b899c8f27981',
-  keyword: 'key_73e80fdd-00eb-40ab-a717-522d6b339590',
-  answer: '¡Gracias por contactar a *Prosein*! 🙌🏼.',
+  ref: 'ans_8e5b5fa6-f479-4f2c-b350-dfcf41c63dda',
+  keyword: 'key_48710431-ac20-4af7-8013-07acf865e5a0',
+  answer: '__call_action__',
   options: {
     media: null,
     buttons: [],
@@ -52,24 +15,9 @@
     keyword: {},
     callback: true
   },
-  refSerialize: '36b6c4ea4c0f8677d1cdd8d4dc1d7d99'
+  refSerialize: '36feeebbd7b2184965057213f5aea692'
 }
-[handleMsg]:  {
-  SmsMessageSid: 'SMdb9b05534db3464e367b4bcb1efc941b',
-  NumMedia: '0',
-  ProfileName: 'S.A',
-  SmsSid: 'SMdb9b05534db3464e367b4bcb1efc941b',
-  WaId: '584247182145',
-  SmsStatus: 'received',
-  Body: '6',
-  To: 'whatsapp:+14155238886',
-  NumSegments: '1',
-  ReferralNumMedia: '0',
-  MessageSid: 'SMdb9b05534db3464e367b4bcb1efc941b',
-  AccountSid: 'AC520009ca0a7a922be37ef85be3670a16',
-  From: 'whatsapp:+584247182145',
-  ApiVersion: '2010-04-01',
-  from: '584247182145',
-  to: '14155238886',
-  body: '6'
-}
+[handleMsg]:  { from: '584241604932', to: '14155238886', body: '1' }
+[handleMsg]:  { from: '584241604932', to: '14155238886', body: '1' }
+[handleMsg]:  { from: '584241604932', to: '14155238886', body: '8' }
+[handleMsg]:  { from: '584241604932', to: '14155238886', body: '1' }
