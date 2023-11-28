@@ -60,9 +60,9 @@ async function airtableAnswers(table,myState,ctx) {
   var ciudad = myState.ciudad ? myState.ciudad : '0';
   var catalogo = myState.catalogo ? myState.catalogo : '0';
   var sucursal = myState.sucursal ? myState.sucursal : '0';
+  var queja = myState.queja ? myState.queja : '0';
 
-
-    var data = JSON.stringify({
+  var data = JSON.stringify({
         
   fields: {
         id: `${id}`,
@@ -71,6 +71,7 @@ async function airtableAnswers(table,myState,ctx) {
         ciudad: `${ciudad}`,
         catalogo: `${catalogo}`,
         sucursal: `${sucursal}`,
+        queja: `${queja}`,
     },
     });
     console.log(data)

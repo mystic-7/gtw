@@ -14,12 +14,12 @@ const flowSucursales = addKeyword(['LISTA_DE_TIENDAS'], {
   const flows = await airtableGet('flows');
   const disculpa = getFlow(getFields(flows), 'fallback');
 
-  // console.log(city, tienda, disculpa);
+  console.log(city, tienda, sucursales);
 
   if (tienda.id_ciudad[0] === city) {
-    await state.update({ sucursal: ctx.body });
+    await state.update({ sucursal: tienda.nombre });
     const myState = state.getMyState();
-    airtableAnswers('test',myState,ctx)
+    airtableAnswers('conversaciones',myState,ctx)
     return await flowDynamic(tienda.direccion);
   } else {
     await flowDynamic(disculpa.texto);
@@ -51,7 +51,7 @@ const flowTiendas = addKeyword(['LISTA_DE_CIUDADES'], {
       await flowDynamic(disculpa.texto);
       return fallBack();
     } else if (ciudad.sucursales.length > 1 && !isNaN(city)) {
-      await state.update({ ciudad: city });
+      await state.update({ ciudad: ciudad.nombre });
       const sucursales = await airtableGet('sucursales');
       const list = createSortedList(
         getFields(sucursales).filter((r) => r.id_ciudad.includes(city))
@@ -63,11 +63,10 @@ const flowTiendas = addKeyword(['LISTA_DE_CIUDADES'], {
       await flowDynamic([helperText, list.join('\r\n')]);
       return gotoFlow(flowSucursales);
     } else if (!isNaN(city)){
-      await state.update({ ciudad: city });
-      console.log(ciudad)
-      await state.update({ sucursal: ciudad.id });
+      await state.update({ ciudad: ciudad.nombre });
+      await state.update({ sucursal: ciudad.nombre_sucursales[0] });
       const myState = state.getMyState();
-      airtableAnswers('test',myState,ctx)
+      airtableAnswers('conversaciones',myState,ctx)
       return await flowDynamic(ciudad.direccion[0]);
     }
   });

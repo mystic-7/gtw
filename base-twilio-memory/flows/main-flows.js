@@ -23,22 +23,26 @@ const flowOpciones = addKeyword(['LISTA_DE_OPCIONES'], {
         ctx.body === '4' ||
         ctx.body === '5' ||
         ctx.body === '6'
-      ) {
-        await state.update({ motivo: ctx.body });
+      ) {;
         const opcion = parseInt(ctx.body);
-        await state.update({ motivo: ctx.body });
         switch (opcion) {
           case 1:
+            await state.update({ motivo: 'Horarios y Ubicaciones' })
             return gotoFlow(flowTiendas);
           case 2:
+            await state.update({ motivo: 'Catalogos' })
             return gotoFlow(flowCatalogo);
           case 3:
+            await state.update({ motivo: 'Cotizar productos' })
             return gotoFlow(flowTiendas);
           case 4:
+            await state.update({ motivo: 'Promociones' })
             return gotoFlow(flowTiendas);
           case 5:
+            await state.update({ motivo: 'Disponibilidad de Productos' })
             return gotoFlow(flowTiendas);
           case 6:
+            await state.update({ motivo: 'Reclamos y Sugerencias' })
             return gotoFlow(flowReclamosSugerencias);
         }
       } else {
@@ -55,8 +59,9 @@ const flowReclamosSugerencias = addKeyword(['RECLAMOS_SUGERENCIAS']).addAction(a
   const mensaje = getFlow(getFields(flows), 'pregunta_reclamos').texto;
   return await flowDynamic(mensaje);
 }).addAction({ capture: true }, async (ctx, { gotoFlow, flowDynamic,state }) => {
+      await state.update({ queja: ctx.body });
       const myState = state.getMyState();
-      airtableAnswers('test',myState,ctx);
+      airtableAnswers('conversaciones',myState,ctx);
       queja = ctx.body;
       const horaActual = new Date().getHours();
       if (horaActual >= 7 && horaActual < 17) {
@@ -108,13 +113,14 @@ const flowRegistro = addKeyword('USUARIOS_NO_REGISTRADOS').addAction(async (_, {
 
 
 const flowPrincipal = addKeyword(['hola', 'ole', 'alo']).addAction(
-  async (ctx, { gotoFlow, flowDynamic }) => {
+  async (ctx, { gotoFlow, flowDynamic,state }) => {
     try {
       const listaDeContactos = await airtableGet('clientes');
       const nombreDeContacto = filterRecordsById(listaDeContactos, ctx.from);
       if (nombreDeContacto) {
         let saludo = greetingsPool(nombreDeContacto);
         await flowDynamic(saludo);
+        state.clear()
         return gotoFlow(flowOpciones);
       } else {
         return gotoFlow(flowRegistro);

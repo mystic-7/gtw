@@ -19,13 +19,13 @@ const flowCatalogo = addKeyword(['LISTA_DE_CATALOGOS'], {
     })
     .addAction({ capture: true }, async (ctx, { gotoFlow,state, flowDynamic,fallBack }) => {
         catalogo_s = parseInt(ctx.body);
-        await state.update({ catalogo: ctx.body });
         const l_catalogos = await airtableGet('catalogos');
         const list = getFields(l_catalogos).filter((r) => r.id == catalogo_s);
         const flows = await airtableGet('flows');
         const disculpa = getFlow(getFields(flows), 'fallback');
         console.log(list[0].info)
         if (list.length > 0) {
+            await state.update({ catalogo: list[0].nombre });
             await flowDynamic([{
               body:list[0].nombre,
               media: list[0].info
@@ -43,12 +43,12 @@ const flowCatalogo = addKeyword(['LISTA_DE_CATALOGOS'], {
     })
     .addAction({ capture: true }, async (ctx, { gotoFlow,flowDynamic,fallBack,state }) => {
       if (ctx.body === '1') {
-        await state.update({ cotizar: ctx.body });
+        await state.update({ cotizar: 'SI' });
         return gotoFlow(flowTiendas)
       } else if (ctx.body === '2') {
-        await state.update({ cotizar: ctx.body });
+        await state.update({ cotizar: 'NO' });
         const myState = state.getMyState();
-        airtableAnswers('test',myState,ctx)
+        airtableAnswers('conversaciones',myState,ctx)
         const flows = await airtableGet('flows');
         const mensaje = getFlow(getFields(flows), 'despedida').texto;
         return await flowDynamic(mensaje);

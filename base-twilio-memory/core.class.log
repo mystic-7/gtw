@@ -1,7 +1,7 @@
-[handleMsg]:  { from: '584247182145', to: '14155238886', body: 'Hola' }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: 'hola' }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_5ca9f4bc-2e7a-412f-83d9-3419de5d6628',
-  keyword: 'key_396fe689-cb9e-4542-938c-5859eedc521c',
+  ref: 'ans_b88ad037-8353-4469-91a1-c3ef93935788',
+  keyword: 'key_f5a9d207-998f-4dca-96ea-0c2ca04a8b77',
   answer: '__call_action__',
   options: {
     media: null,
@@ -15,15 +15,76 @@
     keyword: {},
     callback: true
   },
-  refSerialize: '7b5fcfab3b65fd355457e41bfe22d4a5'
+  refSerialize: '55c06a4b1f8789c5746c785824097899'
 }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: '4' }
 [handleMsg]:  { from: '584247182145', to: '14155238886', body: '1' }
-[handleMsg]:  { from: '584247182145', to: '14155238886', body: '1' }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: '3' }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: 'hola' }
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_b88ad037-8353-4469-91a1-c3ef93935788',
+  keyword: 'key_f5a9d207-998f-4dca-96ea-0c2ca04a8b77',
+  answer: '__call_action__',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '55c06a4b1f8789c5746c785824097899'
+}
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: '3' }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: '5' }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: 'hola' }
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_b88ad037-8353-4469-91a1-c3ef93935788',
+  keyword: 'key_f5a9d207-998f-4dca-96ea-0c2ca04a8b77',
+  answer: '__call_action__',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '55c06a4b1f8789c5746c785824097899'
+}
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: '2' }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: '4' }
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_50764138-d7e4-4721-aeff-bcf85ad02fbf',
+  keyword: 'ans_95650cf6-b6a5-4b4c-857f-ef9643150d9d',
+  answer: '__capture_only_intended__',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '0a6ab3fcdda3b37cf1ac4808d39c247f'
+}
 [handleMsg]:  { from: '584247182145', to: '14155238886', body: '2' }
 [handleMsg]:  { from: '584247182145', to: '14155238886', body: 'hola' }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_5ca9f4bc-2e7a-412f-83d9-3419de5d6628',
-  keyword: 'key_396fe689-cb9e-4542-938c-5859eedc521c',
+  ref: 'ans_b88ad037-8353-4469-91a1-c3ef93935788',
+  keyword: 'key_f5a9d207-998f-4dca-96ea-0c2ca04a8b77',
   answer: '__call_action__',
   options: {
     media: null,
@@ -37,7 +98,48 @@
     keyword: {},
     callback: true
   },
-  refSerialize: '7b5fcfab3b65fd355457e41bfe22d4a5'
+  refSerialize: '55c06a4b1f8789c5746c785824097899'
+}
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: '2' }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: '1' }
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_50764138-d7e4-4721-aeff-bcf85ad02fbf',
+  keyword: 'ans_95650cf6-b6a5-4b4c-857f-ef9643150d9d',
+  answer: '__capture_only_intended__',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '0a6ab3fcdda3b37cf1ac4808d39c247f'
 }
 [handleMsg]:  { from: '584247182145', to: '14155238886', body: '1' }
-[handleMsg]:  { from: '584247182145', to: '14155238886', body: '15' }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: '13' }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: 'hola' }
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_b88ad037-8353-4469-91a1-c3ef93935788',
+  keyword: 'key_f5a9d207-998f-4dca-96ea-0c2ca04a8b77',
+  answer: '__call_action__',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '55c06a4b1f8789c5746c785824097899'
+}
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: '1' }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: '5' }
