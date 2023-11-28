@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { getRecordId } = require('../tools/utils');
 
 //axios request
 const airtable = async (method, url, body) => {
@@ -53,28 +54,10 @@ async function airtablePost(table, data) {
   return result;
 }
 
-async function airtableAnswers(table,myState,ctx) {
-  var id = ctx.from ? ctx.from : '0';
-  var motivo = myState.motivo ? myState.motivo : '0';
-  var cotizar = myState.cotizar ? myState.cotizar : '0';
-  var ciudad = myState.ciudad ? myState.ciudad : '0';
-  var catalogo = myState.catalogo ? myState.catalogo : '0';
-  var sucursal = myState.sucursal ? myState.sucursal : '0';
-  var queja = myState.queja ? myState.queja : '0';
+async function airtableAnswers(table, myState, ctx) {
+  let cliente = await airtableGetOne('clientes', ctx.from);
 
-  var data = JSON.stringify({
-        
-  fields: {
-        id: `${id}`,
-        motivo: `${motivo}`,
-        cotizar: `${cotizar}`,
-        ciudad: `${ciudad}`,
-        catalogo: `${catalogo}`,
-        sucursal: `${sucursal}`,
-        queja: `${queja}`,
-    },
-    });
-    console.log(data)
+  let data = { fields: { clientes: [getRecordId(cliente)], ...myState } };
 
   const result = await airtable(
     'POST',
@@ -85,4 +68,4 @@ async function airtableAnswers(table,myState,ctx) {
   return result;
 }
 
-module.exports = { airtableGet, airtableGetOne, airtablePost,airtableAnswers };
+module.exports = { airtableGet, airtableGetOne, airtablePost, airtableAnswers };
