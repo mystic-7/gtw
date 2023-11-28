@@ -53,4 +53,35 @@ async function airtablePost(table, data) {
   return result;
 }
 
-module.exports = { airtableGet, airtableGetOne, airtablePost };
+async function airtableAnswers(table,myState,ctx) {
+  var id = ctx.from ? ctx.from : '0';
+  var motivo = myState.motivo ? myState.motivo : '0';
+  var cotizar = myState.cotizar ? myState.cotizar : '0';
+  var ciudad = myState.ciudad ? myState.ciudad : '0';
+  var catalogo = myState.catalogo ? myState.catalogo : '0';
+  var sucursal = myState.sucursal ? myState.sucursal : '0';
+
+
+    var data = JSON.stringify({
+        
+  fields: {
+        id: `${id}`,
+        motivo: `${motivo}`,
+        cotizar: `${cotizar}`,
+        ciudad: `${ciudad}`,
+        catalogo: `${catalogo}`,
+        sucursal: `${sucursal}`,
+    },
+    });
+    console.log(data)
+
+  const result = await airtable(
+    'POST',
+    `https://api.airtable.com/v0/appbSfEIG0OB8UdVa/${table}`,
+    data
+  );
+
+  return result;
+}
+
+module.exports = { airtableGet, airtableGetOne, airtablePost,airtableAnswers };

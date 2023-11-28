@@ -1,7 +1,7 @@
-[handleMsg]:  { from: '584241604932', to: '14155238886', body: 'hola' }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: 'Hola' }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_8e5b5fa6-f479-4f2c-b350-dfcf41c63dda',
-  keyword: 'key_48710431-ac20-4af7-8013-07acf865e5a0',
+  ref: 'ans_5ca9f4bc-2e7a-412f-83d9-3419de5d6628',
+  keyword: 'key_396fe689-cb9e-4542-938c-5859eedc521c',
   answer: '__call_action__',
   options: {
     media: null,
@@ -15,9 +15,29 @@
     keyword: {},
     callback: true
   },
-  refSerialize: '36feeebbd7b2184965057213f5aea692'
+  refSerialize: '7b5fcfab3b65fd355457e41bfe22d4a5'
 }
-[handleMsg]:  { from: '584241604932', to: '14155238886', body: '1' }
-[handleMsg]:  { from: '584241604932', to: '14155238886', body: '1' }
-[handleMsg]:  { from: '584241604932', to: '14155238886', body: '8' }
-[handleMsg]:  { from: '584241604932', to: '14155238886', body: '1' }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: '1' }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: '1' }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: '2' }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: 'hola' }
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_5ca9f4bc-2e7a-412f-83d9-3419de5d6628',
+  keyword: 'key_396fe689-cb9e-4542-938c-5859eedc521c',
+  answer: '__call_action__',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '7b5fcfab3b65fd355457e41bfe22d4a5'
+}
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: '1' }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: '15' }

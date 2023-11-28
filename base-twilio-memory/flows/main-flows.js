@@ -1,8 +1,9 @@
 const { addKeyword } = require('@bot-whatsapp/bot');
-const { airtableGet } = require('../services/airtable-client');
+const { airtableGet,airtablePost,airtableAnswers } = require('../services/airtable-client');
 const { filterRecordsById, getFlow, getFields } = require('../tools/utils');
 const { greetingsPool } = require('../tools/greetings');
 const { flowTiendas } = require('./tiendas');
+const { flowCatalogo } = require('./catalogos');
 
 const flowOpciones = addKeyword(['LISTA_DE_OPCIONES'], {
   sensitive: true,
@@ -49,6 +50,63 @@ const flowOpciones = addKeyword(['LISTA_DE_OPCIONES'], {
     }
   );
 
+const flowReclamosSugerencias = addKeyword(['RECLAMOS_SUGERENCIAS']).addAction(async (_, { flowDynamic }) => {
+  const flows = await airtableGet('flows');
+  const mensaje = getFlow(getFields(flows), 'pregunta_reclamos').texto;
+  return await flowDynamic(mensaje);
+}).addAction({ capture: true }, async (ctx, { gotoFlow, flowDynamic,state }) => {
+      const myState = state.getMyState();
+      airtableAnswers('test',myState,ctx);
+      queja = ctx.body;
+      const horaActual = new Date().getHours();
+      if (horaActual >= 7 && horaActual < 17) {
+        const flows = await airtableGet('flows');
+        const mensaje = getFlow(getFields(flows), 'horario');
+        await flowDynamic(mensaje.texto);
+      } else if (horaActual >= 17) {
+        const flows = await airtableGet('flows');
+        const mensaje = getFlow(getFields(flows), 'nhorario');
+        await flowDynamic(mensaje.texto);
+      } else {
+        return fallBack();
+      }
+    }
+)
+
+
+const flowRegistro = addKeyword('USUARIOS_NO_REGISTRADOS').addAction(async (_, { flowDynamic }) => {
+  const flows = await airtableGet('flows');
+  const mensaje = getFlow(getFields(flows), 'registro').texto;
+  return await flowDynamic(mensaje);
+}).addAction({ capture: true }, async (ctx, { state,flowDynamic }) => {
+  await state.update({ nombre: ctx.body });
+  const flows = await airtableGet('flows');
+  const mensaje = getFlow(getFields(flows), 'correo').texto;
+  await flowDynamic(mensaje);
+}).addAction({ capture: true }, async (ctx,{ flowDynamic, gotoFlow, state }) => {
+  if (ctx.body.includes('@')) {
+        await state.update({ correo: ctx.body });
+  } else {
+    await state.update({ correo: " " });
+  }
+  const myState = state.getMyState();
+  var raw = JSON.stringify({
+        fields: {
+            nombre: `${myState.nombre}`,
+            telefono: `${ctx.from}`,
+            correo: `${myState.correo}`,
+        },
+    });
+  const flows = await airtableGet('flows');
+  const mensaje = getFlow(getFields(flows), 'gracias').texto;
+  await flowDynamic(mensaje);
+  airtablePost('clientes',raw)
+  return gotoFlow(flowOpciones)
+  
+})
+
+
+
 const flowPrincipal = addKeyword(['hola', 'ole', 'alo']).addAction(
   async (ctx, { gotoFlow, flowDynamic }) => {
     try {
@@ -59,7 +117,7 @@ const flowPrincipal = addKeyword(['hola', 'ole', 'alo']).addAction(
         await flowDynamic(saludo);
         return gotoFlow(flowOpciones);
       } else {
-        console.log('else');
+        return gotoFlow(flowRegistro);
       }
     } catch (error) {
       console.error('Error in flowPrincipal:', error);
@@ -67,4 +125,4 @@ const flowPrincipal = addKeyword(['hola', 'ole', 'alo']).addAction(
   }
 );
 
-module.exports = { flowPrincipal, addKeyword, flowOpciones };
+module.exports = { flowPrincipal, addKeyword, flowOpciones,flowReclamosSugerencias,flowRegistro };
