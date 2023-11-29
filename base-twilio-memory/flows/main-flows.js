@@ -9,15 +9,6 @@ const { greetingsPool } = require('../tools/greetings');
 const { flowTiendas } = require('./tiendas');
 const { flowCatalogo } = require('./catalogos');
 
-const flowDespedida = addKeyword(['HASTA_LOGO']).addAction(
-  async (_, { flowDynamic }) => {
-    const flows = await airtableGet('flows');
-    const texto = getFlow(getFields(flows), 'despedida').texto;
-    const partes = [texto.split(/\n/)];
-    return await flowDynamic(partes);
-  }
-);
-
 const flowOpciones = addKeyword(['LISTA_DE_OPCIONES'], {
   sensitive: true,
 })
@@ -133,19 +124,15 @@ const flowRegistro = addKeyword('USUARIOS_NO_REGISTRADOS')
 
 const flowPrincipal = addKeyword(['hola', 'ole', 'alo']).addAction(
   async (ctx, { gotoFlow, flowDynamic, state }) => {
-    try {
-      const listaDeContactos = await airtableGet('clientes');
-      const nombreDeContacto = filterRecordsById(listaDeContactos, ctx.from);
-      if (nombreDeContacto) {
-        let saludo = greetingsPool(nombreDeContacto);
-        await flowDynamic(saludo);
-        state.clear();
-        return gotoFlow(flowOpciones);
-      } else {
-        return gotoFlow(flowRegistro);
-      }
-    } catch (error) {
-      console.error('Error in flowPrincipal:', error);
+    const listaDeContactos = await airtableGet('clientes');
+    const nombreDeContacto = filterRecordsById(listaDeContactos, ctx.from);
+    if (nombreDeContacto) {
+      let saludo = greetingsPool(nombreDeContacto);
+      await flowDynamic(saludo);
+      state.clear();
+      return gotoFlow(flowOpciones);
+    } else {
+      return gotoFlow(flowRegistro);
     }
   }
 );

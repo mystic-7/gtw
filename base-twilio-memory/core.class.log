@@ -1,0 +1,17 @@
+[handleMsg]:  { from: '584241604932', to: '14155238886', body: 'hola' }
+[ERROR ID (8c6ed276-8b8d-4158-9314-0260b7907922)]:  RestException [Error]: Authenticate
+    at success (/Users/gerardocoronado/Documents/gtw/base-twilio-memory/node_modules/twilio/lib/base/Version.js:79:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async CoreClass.sendProviderAndSave (/Users/gerardocoronado/Documents/gtw/base-twilio-memory/node_modules/@bot-whatsapp/bot/lib/bundle.bot.cjs:1490:21)
+    at async /Users/gerardocoronado/Documents/gtw/base-twilio-memory/node_modules/@bot-whatsapp/bot/lib/bundle.bot.cjs:1307:21
+    at async Object.ans_93487307-09df-4349-809b-7926a0e350eb (/Users/gerardocoronado/Documents/gtw/base-twilio-memory/flows/main-flows.js:140:7)
+    at async runContext (/Users/gerardocoronado/Documents/gtw/base-twilio-memory/node_modules/@bot-whatsapp/bot/lib/bundle.bot.cjs:1375:17)
+    at async cbEveryCtx (/Users/gerardocoronado/Documents/gtw/base-twilio-memory/node_modules/@bot-whatsapp/bot/lib/bundle.bot.cjs:1401:13)
+    at async resolveCbEveryCtx (/Users/gerardocoronado/Documents/gtw/base-twilio-memory/node_modules/@bot-whatsapp/bot/lib/bundle.bot.cjs:1332:17)
+    at async Object.promiseInFunc (/Users/gerardocoronado/Documents/gtw/base-twilio-memory/node_modules/@bot-whatsapp/bot/lib/bundle.bot.cjs:1183:29)
+    at async /Users/gerardocoronado/Documents/gtw/base-twilio-memory/node_modules/@bot-whatsapp/bot/lib/bundle.bot.cjs:529:35 {
+  status: 401,
+  code: 20003,
+  moreInfo: 'https://www.twilio.com/docs/errors/20003',
+  details: undefined
+}

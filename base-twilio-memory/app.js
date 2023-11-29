@@ -4,7 +4,6 @@ const {
   flowOpciones,
   flowReclamosSugerencias,
   flowRegistro,
-  flowDespedida,
 } = require('./flows/main-flows');
 const { flowTiendas, flowSucursales } = require('./flows/tiendas');
 const { flowCatalogo } = require('./flows/catalogos');
