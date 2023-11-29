@@ -64,7 +64,8 @@ async function airtableAnswers(table, myState, ctx) {
     },
     typecast: true,
   };
-
+  delete data.fields.nombre
+  delete data.fields.correo
   const result = await airtable(
     'POST',
     `https://api.airtable.com/v0/appbSfEIG0OB8UdVa/${table}`,

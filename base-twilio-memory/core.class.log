@@ -1,17 +1,62 @@
-[handleMsg]:  { from: '584241604932', to: '14155238886', body: 'hola' }
-[ERROR ID (8c6ed276-8b8d-4158-9314-0260b7907922)]:  RestException [Error]: Authenticate
-    at success (/Users/gerardocoronado/Documents/gtw/base-twilio-memory/node_modules/twilio/lib/base/Version.js:79:23)
-    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-    at async CoreClass.sendProviderAndSave (/Users/gerardocoronado/Documents/gtw/base-twilio-memory/node_modules/@bot-whatsapp/bot/lib/bundle.bot.cjs:1490:21)
-    at async /Users/gerardocoronado/Documents/gtw/base-twilio-memory/node_modules/@bot-whatsapp/bot/lib/bundle.bot.cjs:1307:21
-    at async Object.ans_93487307-09df-4349-809b-7926a0e350eb (/Users/gerardocoronado/Documents/gtw/base-twilio-memory/flows/main-flows.js:140:7)
-    at async runContext (/Users/gerardocoronado/Documents/gtw/base-twilio-memory/node_modules/@bot-whatsapp/bot/lib/bundle.bot.cjs:1375:17)
-    at async cbEveryCtx (/Users/gerardocoronado/Documents/gtw/base-twilio-memory/node_modules/@bot-whatsapp/bot/lib/bundle.bot.cjs:1401:13)
-    at async resolveCbEveryCtx (/Users/gerardocoronado/Documents/gtw/base-twilio-memory/node_modules/@bot-whatsapp/bot/lib/bundle.bot.cjs:1332:17)
-    at async Object.promiseInFunc (/Users/gerardocoronado/Documents/gtw/base-twilio-memory/node_modules/@bot-whatsapp/bot/lib/bundle.bot.cjs:1183:29)
-    at async /Users/gerardocoronado/Documents/gtw/base-twilio-memory/node_modules/@bot-whatsapp/bot/lib/bundle.bot.cjs:529:35 {
-  status: 401,
-  code: 20003,
-  moreInfo: 'https://www.twilio.com/docs/errors/20003',
-  details: undefined
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: 'hola' }
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_6f4588e1-d1d3-443e-a254-c3a884fc0a4f',
+  keyword: 'key_d6b82a63-aade-4409-b1c4-a058f50285fa',
+  answer: '__call_action__',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '4872b61a9a2cbd397d9797504f466c11'
 }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: '5' }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: '1' }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: '10' }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: '1' }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: 'hola' }
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_6f4588e1-d1d3-443e-a254-c3a884fc0a4f',
+  keyword: 'key_d6b82a63-aade-4409-b1c4-a058f50285fa',
+  answer: '__call_action__',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '4872b61a9a2cbd397d9797504f466c11'
+}
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: 'lsas' }
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_0640d160-5404-4f68-9bce-648a74fb3292',
+  keyword: 'ans_0d26ea30-70b0-4976-8e94-b38fbc673dce',
+  answer: '__capture_only_intended__',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'fc6c4b15c7a4534298ed82337a1ffc9b'
+}
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: 'a' }

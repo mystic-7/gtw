@@ -4,6 +4,7 @@ const {
   airtablePost,
   airtableAnswers,
 } = require('../services/airtable-client');
+const { EVENTS } = require('@bot-whatsapp/bot')
 const { filterRecordsById, getFlow, getFields } = require('../tools/utils');
 const { greetingsPool } = require('../tools/greetings');
 const { flowTiendas } = require('./tiendas');
@@ -118,11 +119,15 @@ const flowRegistro = addKeyword('USUARIOS_NO_REGISTRADOS')
       const mensaje = getFlow(getFields(flows), 'gracias').texto;
       await flowDynamic(mensaje);
       airtablePost('clientes', raw);
+      const listaDeContactos = await airtableGet('clientes');
+      const nombreDeContacto = filterRecordsById(listaDeContactos, ctx.from);
+      let saludo = greetingsPool(nombreDeContacto);
+      await flowDynamic(saludo);
       return gotoFlow(flowOpciones);
     }
   );
 
-const flowPrincipal = addKeyword(['hola', 'ole', 'alo']).addAction(
+const flowPrincipal = addKeyword(EVENTS.WELCOME).addAction(
   async (ctx, { gotoFlow, flowDynamic, state }) => {
     const listaDeContactos = await airtableGet('clientes');
     const nombreDeContacto = filterRecordsById(listaDeContactos, ctx.from);

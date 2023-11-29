@@ -49,6 +49,8 @@ const flowCatalogo = addKeyword(['LISTA_DE_CATALOGOS'], {
   .addAction(
     { capture: true },
     async (ctx, { flowDynamic, fallBack, state }) => {
+      const flows = await airtableGet('flows');
+      const disculpa = getFlow(getFields(flows), 'fallback');
       if (ctx.body === '1') {
         await state.update({ cotizar: 'Si' });
         return gotoFlow(flowTiendas);
@@ -61,6 +63,7 @@ const flowCatalogo = addKeyword(['LISTA_DE_CATALOGOS'], {
         const partes = texto.split(/\n\n/);
         return await flowDynamic(partes);
       } else {
+        await flowDynamic(disculpa.texto);
         return fallBack();
       }
     }

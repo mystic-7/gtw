@@ -15,12 +15,18 @@ const flowSucursales = addKeyword(['LISTA_DE_TIENDAS'], {
 
     const flows = await airtableGet('flows');
     const disculpa = getFlow(getFields(flows), 'fallback');
-
-    if (tienda.id_ciudad[0] === city) {
+    console.log(tienda)
+    if (tienda === undefined){
+      await flowDynamic(disculpa.texto);
+      return fallBack();
+    } else if (tienda.id_ciudad[0] === city) {
       await state.update({ sucursal: tienda.nombre });
       const myState = state.getMyState();
       airtableAnswers('conversaciones', myState, ctx);
-      return await flowDynamic(tienda.direccion);
+      var linkws = tienda.whalink ? tienda.whalink : ''
+      var motivacion = myState.motivo ? myState.motivo : ''
+      console.log(motivacion)
+      return await flowDynamic(tienda.direccion + '' + motivacion.toLowerCase() + '.\n' + '\n' + linkws);
     } else {
       await flowDynamic(disculpa.texto);
       return fallBack();
@@ -70,7 +76,7 @@ const flowTiendas = addKeyword(['LISTA_DE_CIUDADES'], {
         await state.update({ sucursal: ciudad.nombre_sucursales[0] });
         const myState = state.getMyState();
         airtableAnswers('conversaciones', myState, ctx);
-        return await flowDynamic(ciudad.direccion[0]);
+        return await flowDynamic(ciudad.direccion[0]  );
       }
     }
   );
