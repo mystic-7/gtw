@@ -37,7 +37,7 @@ const flowCatalogo = addKeyword(['LISTA_DE_CATALOGOS'], {
         await flowDynamic([
           {
             body: mensaje,
-            delay: 8000,
+            delay: 4000,
           },
         ]);
       } else {
@@ -48,7 +48,7 @@ const flowCatalogo = addKeyword(['LISTA_DE_CATALOGOS'], {
   )
   .addAction(
     { capture: true },
-    async (ctx, { gotoFlow, flowDynamic, fallBack, state }) => {
+    async (ctx, { flowDynamic, fallBack, state }) => {
       if (ctx.body === '1') {
         await state.update({ cotizar: 'Si' });
         return gotoFlow(flowTiendas);
@@ -57,8 +57,9 @@ const flowCatalogo = addKeyword(['LISTA_DE_CATALOGOS'], {
         const myState = state.getMyState();
         airtableAnswers('conversaciones', myState, ctx);
         const flows = await airtableGet('flows');
-        const mensaje = getFlow(getFields(flows), 'despedida').texto;
-        return await flowDynamic(mensaje);
+        const texto = getFlow(getFields(flows), 'despedida').texto;
+        const partes = texto.split(/\n\n/);
+        return await flowDynamic(partes);
       } else {
         return fallBack();
       }

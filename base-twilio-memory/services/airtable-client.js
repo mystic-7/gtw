@@ -57,7 +57,16 @@ async function airtablePost(table, data) {
 async function airtableAnswers(table, myState, ctx) {
   let cliente = await airtableGetOne('clientes', ctx.from);
 
-  let data = { fields: { clientes: [getRecordId(cliente)], ...myState } };
+  console.log(newState, motivo, newState.motivo);
+
+  let data = {
+    fields: {
+      clientes: [getRecordId(cliente)],
+      motivos: [getRecordId(motivo)],
+      ...myState,
+    },
+    typecast: true,
+  };
 
   const result = await airtable(
     'POST',

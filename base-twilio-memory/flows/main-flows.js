@@ -9,6 +9,15 @@ const { greetingsPool } = require('../tools/greetings');
 const { flowTiendas } = require('./tiendas');
 const { flowCatalogo } = require('./catalogos');
 
+const flowDespedida = addKeyword(['HASTA_LOGO']).addAction(
+  async (_, { flowDynamic }) => {
+    const flows = await airtableGet('flows');
+    const texto = getFlow(getFields(flows), 'despedida').texto;
+    const partes = [texto.split(/\n/)];
+    return await flowDynamic(partes);
+  }
+);
+
 const flowOpciones = addKeyword(['LISTA_DE_OPCIONES'], {
   sensitive: true,
 })
@@ -43,10 +52,10 @@ const flowOpciones = addKeyword(['LISTA_DE_OPCIONES'], {
             await state.update({ motivo: 'Promociones' });
             return gotoFlow(flowTiendas);
           case 5:
-            await state.update({ motivo: 'Disponibilidad de Productos' });
+            await state.update({ motivo: 'Disponibilidad' });
             return gotoFlow(flowTiendas);
           case 6:
-            await state.update({ motivo: 'Reclamos y Sugerencias' });
+            await state.update({ motivo: 'Reclamos' });
             return gotoFlow(flowReclamosSugerencias);
         }
       } else {
