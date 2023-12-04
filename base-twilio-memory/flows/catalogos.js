@@ -48,7 +48,7 @@ const flowCatalogo = addKeyword(['LISTA_DE_CATALOGOS'], {
   )
   .addAction(
     { capture: true },
-    async (ctx, { flowDynamic, fallBack, state }) => {
+    async (ctx, { flowDynamic, fallBack, state, gotoFlow}) => {
       const flows = await airtableGet('flows');
       const disculpa = getFlow(getFields(flows), 'fallback');
       if (ctx.body === '1') {

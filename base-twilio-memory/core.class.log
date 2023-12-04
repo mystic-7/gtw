@@ -1,7 +1,7 @@
-[handleMsg]:  { from: '584247182145', to: '14155238886', body: 'hola' }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: 'sdaf' }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_6f4588e1-d1d3-443e-a254-c3a884fc0a4f',
-  keyword: 'key_d6b82a63-aade-4409-b1c4-a058f50285fa',
+  ref: 'ans_a3a6d4ce-cd73-4cb7-9604-0477be0852c4',
+  keyword: 'key_de1ca791-a270-4fd2-9870-58087c59f99b',
   answer: '__call_action__',
   options: {
     media: null,
@@ -15,48 +15,7 @@
     keyword: {},
     callback: true
   },
-  refSerialize: '4872b61a9a2cbd397d9797504f466c11'
+  refSerialize: '9a2124bf16c50d741fde599799fa6942'
 }
 [handleMsg]:  { from: '584247182145', to: '14155238886', body: '5' }
 [handleMsg]:  { from: '584247182145', to: '14155238886', body: '1' }
-[handleMsg]:  { from: '584247182145', to: '14155238886', body: '10' }
-[handleMsg]:  { from: '584247182145', to: '14155238886', body: '1' }
-[handleMsg]:  { from: '584247182145', to: '14155238886', body: 'hola' }
-[QUEUE_SE_ENVIO]:  {
-  ref: 'ans_6f4588e1-d1d3-443e-a254-c3a884fc0a4f',
-  keyword: 'key_d6b82a63-aade-4409-b1c4-a058f50285fa',
-  answer: '__call_action__',
-  options: {
-    media: null,
-    buttons: [],
-    capture: false,
-    child: null,
-    delay: 0,
-    idle: null,
-    ref: null,
-    nested: [],
-    keyword: {},
-    callback: true
-  },
-  refSerialize: '4872b61a9a2cbd397d9797504f466c11'
-}
-[handleMsg]:  { from: '584247182145', to: '14155238886', body: 'lsas' }
-[QUEUE_SE_ENVIO]:  {
-  ref: 'ans_0640d160-5404-4f68-9bce-648a74fb3292',
-  keyword: 'ans_0d26ea30-70b0-4976-8e94-b38fbc673dce',
-  answer: '__capture_only_intended__',
-  options: {
-    media: null,
-    buttons: [],
-    capture: true,
-    child: null,
-    delay: 0,
-    idle: null,
-    ref: null,
-    nested: [],
-    keyword: {},
-    callback: true
-  },
-  refSerialize: 'fc6c4b15c7a4534298ed82337a1ffc9b'
-}
-[handleMsg]:  { from: '584247182145', to: '14155238886', body: 'a' }

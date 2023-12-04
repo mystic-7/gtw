@@ -18,13 +18,21 @@ function getFlow(records, flow) {
   return flujo;
 }
 
-function filterRecordsById(records, value) {
+function filterRecordsById(records, value,name) {
   var items = records;
   for (var i in items.records) {
     var record = items.records[i];
     var id = record.fields.id;
     if (id === value) {
-      return record.fields.nombre;
+      if (name === true){
+        return record.fields.nombre;
+      }
+      else if (name === false){
+        return record.fields.correo;
+      }
+      else{
+        return null
+      }
     }
   }
   return null;

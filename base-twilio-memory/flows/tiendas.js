@@ -1,7 +1,6 @@
 const { addKeyword } = require('@bot-whatsapp/bot');
 const { airtableGet, airtableAnswers } = require('../services/airtable-client');
-const { createSortedList, getFlow, getFields } = require('../tools/utils');
-
+const { createSortedList, getFlow, getFields,filterRecordsById } = require('../tools/utils');
 let city;
 
 const flowSucursales = addKeyword(['LISTA_DE_TIENDAS'], {
@@ -12,7 +11,8 @@ const flowSucursales = addKeyword(['LISTA_DE_TIENDAS'], {
     let store = parseInt(ctx.body);
     const sucursales = await airtableGet('sucursales');
     const tienda = getFlow(getFields(sucursales), store);
-
+    console.log(tienda)
+    console.log(getFields(sucursales))
     const flows = await airtableGet('flows');
     const disculpa = getFlow(getFields(flows), 'fallback');
     console.log(tienda)
@@ -25,8 +25,10 @@ const flowSucursales = addKeyword(['LISTA_DE_TIENDAS'], {
       airtableAnswers('conversaciones', myState, ctx);
       var linkws = tienda.whalink ? tienda.whalink : ''
       var motivacion = myState.motivo ? myState.motivo : ''
-      console.log(motivacion)
-      return await flowDynamic(tienda.direccion + '' + motivacion.toLowerCase() + '.\n' + '\n' + linkws);
+      const listaDeContactos = await airtableGet('clientes');
+      const nombreDeContacto = filterRecordsById(listaDeContactos, ctx.from,true);
+      const correoDeContacto = filterRecordsById(listaDeContactos, ctx.from,false);
+      return await flowDynamic(tienda.direccion + '' + motivacion.toLowerCase() + '.\n' + '\n' + (linkws === '' ? '' : (linkws + `&text=Hola%20soy%20${nombreDeContacto.replace(/\s/g, '%20')},` + (correoDeContacto === undefined ? '' : ('%20mi%20correo%20es%20' + correoDeContacto + '%20y')) + `%20quisiera%20saber%20informaci%C3%B3n%20sobre%20${motivacion.replace(/\s/g, '%20')}`))); 
     } else {
       await flowDynamic(disculpa.texto);
       return fallBack();
@@ -65,7 +67,6 @@ const flowTiendas = addKeyword(['LISTA_DE_CIUDADES'], {
         const list = createSortedList(
           getFields(sucursales).filter((r) => r.id_ciudad.includes(city))
         );
-
         const flows = await airtableGet('flows');
         const helperText = getFlow(getFields(flows), 'sucursales').texto;
 
@@ -76,7 +77,13 @@ const flowTiendas = addKeyword(['LISTA_DE_CIUDADES'], {
         await state.update({ sucursal: ciudad.nombre_sucursales[0] });
         const myState = state.getMyState();
         airtableAnswers('conversaciones', myState, ctx);
-        return await flowDynamic(ciudad.direccion[0]  );
+        var linkws = ciudad.whalink ? ciudad.whalink : ''
+        var motivacion = myState.motivo ? myState.motivo : ''
+        const listaDeContactos = await airtableGet('clientes');
+        const nombreDeContacto = filterRecordsById(listaDeContactos, ctx.from,true);
+        const correoDeContacto = filterRecordsById(listaDeContactos, ctx.from,false);
+        return await flowDynamic(ciudad.direccion[0] + ' ' + motivacion.toLowerCase() + '.\n' + '\n' + (linkws === '' ? '' : (linkws + `&text=Hola%20soy%20${nombreDeContacto.replace(/\s/g, '%20')},` + (correoDeContacto === undefined ? '' : ('%20mi%20correo%20es%20' + correoDeContacto + '%20y')) + `%20quisiera%20saber%20informaci%C3%B3n%20sobre%20${motivacion.replace(/\s/g, '%20')}`)));
+         
       }
     }
   );

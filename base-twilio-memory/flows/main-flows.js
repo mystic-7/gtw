@@ -10,6 +10,41 @@ const { greetingsPool } = require('../tools/greetings');
 const { flowTiendas } = require('./tiendas');
 const { flowCatalogo } = require('./catalogos');
 
+
+const flowDespedida = addKeyword(['LISTA_DE_OPCIONES'], {
+  sensitive: true,
+})
+  .addAction(async (_, { flowDynamic }) => {
+    const flows = await airtableGet('flows');
+    const mensaje = getFlow(getFields(flows), 'ayuda_adicional').texto;
+    return await flowDynamic(mensaje);
+}).addAction(
+  { capture: true },
+  async (ctx, { flowDynamic, gotoFlow, state }) => {
+    if (
+      ctx.body === '1' ||
+      ctx.body === '2' 
+    ) {
+      const opcion = parseInt(ctx.body);
+      switch (opcion) {
+        case 1:
+          return gotoFlow(flowOpciones);
+        case 2:
+          const flows = await airtableGet('flows');
+          const texto = getFlow(getFields(flows), 'despedida').texto;
+          const partes = texto.split(/\n\n/);
+          return await flowDynamic(partes);
+      }
+    } else {
+      const flows = await airtableGet('flows');
+      const disculpa = getFlow(getFields(flows), 'fallback');
+      await flowDynamic(disculpa);
+      return gotoFlow(flowOpciones);
+    }
+  }
+);
+
+
 const flowOpciones = addKeyword(['LISTA_DE_OPCIONES'], {
   sensitive: true,
 })
@@ -120,7 +155,7 @@ const flowRegistro = addKeyword('USUARIOS_NO_REGISTRADOS')
       await flowDynamic(mensaje);
       airtablePost('clientes', raw);
       const listaDeContactos = await airtableGet('clientes');
-      const nombreDeContacto = filterRecordsById(listaDeContactos, ctx.from);
+      const nombreDeContacto = filterRecordsById(listaDeContactos, ctx.from,true);
       let saludo = greetingsPool(nombreDeContacto);
       await flowDynamic(saludo);
       return gotoFlow(flowOpciones);
@@ -130,7 +165,7 @@ const flowRegistro = addKeyword('USUARIOS_NO_REGISTRADOS')
 const flowPrincipal = addKeyword(EVENTS.WELCOME).addAction(
   async (ctx, { gotoFlow, flowDynamic, state }) => {
     const listaDeContactos = await airtableGet('clientes');
-    const nombreDeContacto = filterRecordsById(listaDeContactos, ctx.from);
+    const nombreDeContacto = filterRecordsById(listaDeContactos, ctx.from,true);
     if (nombreDeContacto) {
       let saludo = greetingsPool(nombreDeContacto);
       await flowDynamic(saludo);
@@ -148,4 +183,5 @@ module.exports = {
   flowOpciones,
   flowReclamosSugerencias,
   flowRegistro,
+  flowDespedida
 };

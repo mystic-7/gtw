@@ -4,6 +4,7 @@ const {
   flowOpciones,
   flowReclamosSugerencias,
   flowRegistro,
+  flowDespedida
 } = require('./flows/main-flows');
 const { flowTiendas, flowSucursales } = require('./flows/tiendas');
 const { flowCatalogo } = require('./flows/catalogos');
@@ -21,6 +22,7 @@ const main = async () => {
     flowSucursales,
     flowCatalogo,
     flowRegistro,
+    flowDespedida
   ]);
 
   const adapterProvider = createProvider(TwilioProvider, {
