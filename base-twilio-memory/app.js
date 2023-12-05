@@ -27,7 +27,7 @@ const main = async () => {
 
   const adapterProvider = createProvider(TwilioProvider, {
     accountSid: 'ACd9e32ec40f49a8c4d98094d7c9db205f',
-    authToken: '393060b6fe57e3940d5a4a7517ef31eb',
+    authToken: 'f972710b8a29f4a1fbafad305ba26a4c',
     vendorNumber: '+584122650987',
   });
 
