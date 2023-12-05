@@ -1,7 +1,20 @@
 [handleMsg]:  { from: '584241604932', to: '584122650987', body: 'Hola' }
-[ERROR ID (2111d685-692f-4695-a86b-b9db112aa69e)]:  [RestException [Error]: Authenticate] {
-  status: 401,
-  code: 20003,
-  moreInfo: 'https://www.twilio.com/docs/errors/20003',
-  detail: undefined
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_43c4d81a-4942-4c94-b800-0a0dc991b1f3',
+  keyword: 'key_d1f58231-fc3e-4899-822d-3f4c5409ab3d',
+  answer: '__call_action__',
+  options: {
+    media: null,
+    buttons: [],
+    capture: false,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: 'cb12eebb250b9d53673638df801668f4'
 }
+[handleMsg]:  { from: '584241604932', to: '584122650987', body: 'Hola' }
