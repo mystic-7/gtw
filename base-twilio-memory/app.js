@@ -4,7 +4,7 @@ const {
   flowOpciones,
   flowReclamosSugerencias,
   flowRegistro,
-  flowDespedida
+  flowDespedida,
 } = require('./flows/main-flows');
 const { flowTiendas, flowSucursales } = require('./flows/tiendas');
 const { flowCatalogo } = require('./flows/catalogos');
@@ -22,13 +22,13 @@ const main = async () => {
     flowSucursales,
     flowCatalogo,
     flowRegistro,
-    flowDespedida
+    flowDespedida,
   ]);
 
   const adapterProvider = createProvider(TwilioProvider, {
-    accountSid: 'AC520009ca0a7a922be37ef85be3670a16',
-    authToken: '146c71c3a052867e294d951970f2c2ab',
-    vendorNumber: '+14155238886',
+    accountSid: 'ACd9e32ec40f49a8c4d98094d7c9db205f',
+    authToken: '393060b6fe57e3940d5a4a7517ef31eb',
+    vendorNumber: '+584122650987',
   });
 
   createBot({
