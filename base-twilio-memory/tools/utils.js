@@ -1,3 +1,7 @@
+function sleep(milliseconds) {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+}
+
 function getRecordId(records) {
   return records.records[0].id;
 }
@@ -18,20 +22,18 @@ function getFlow(records, flow) {
   return flujo;
 }
 
-function filterRecordsById(records, value,name) {
+function filterRecordsById(records, value, name) {
   var items = records;
   for (var i in items.records) {
     var record = items.records[i];
     var id = record.fields.id;
     if (id === value) {
-      if (name === true){
+      if (name === true) {
         return record.fields.nombre;
-      }
-      else if (name === false){
+      } else if (name === false) {
         return record.fields.correo;
-      }
-      else{
-        return null
+      } else {
+        return null;
       }
     }
   }
@@ -52,10 +54,42 @@ function createSortedList(records) {
   return opciones;
 }
 
+function createWaLink(link, name, email, motive) {
+  const walink =
+    link +
+    `&text=Hola%20soy%20${name.replace(/\s/g, '%20')},` +
+    (email === undefined ? '' : '%20mi%20correo%20es%20' + email + '%20y') +
+    `%20quisiera%20saber%20informaci%C3%B3n%20sobre%20${motive.replace(
+      /\s/g,
+      '%20'
+    )}`;
+  return walink;
+}
+
+function generateStoreResponse(link, name, email, motive, address) {
+  if (link) {
+    const walink = createWaLink(link, name, email, motive);
+    return `${address} ${walink}`;
+  }
+
+  switch (motive) {
+    case 'Horarios y Ubicaciones':
+      return address;
+    case 'Cotizar productos':
+      return `${address}\n\nPronto te escribiran de esta sucursal para ayudarte con la cotización que necesitas 😄`;
+    case 'Promociones':
+      return `${address}\n\nPronto te escribiran de esta sucursal para comentarte sobre nuestras promociones 😄`;
+    case 'Disponibilidad':
+      return `${address}\n\nPronto te escribiran de esta sucursal, comentales que producto estás buscando y ellos te daran información sobre su disponibilidad😄`;
+  }
+}
+
 module.exports = {
+  sleep,
   getRecordId,
   getFields,
   getFlow,
   filterRecordsById,
   createSortedList,
+  generateStoreResponse,
 };

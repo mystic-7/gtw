@@ -1,30 +1,35 @@
-const { addKeyword } = require('@bot-whatsapp/bot');
+//Importaciones
 const {
   airtableGet,
   airtablePost,
   airtableAnswers,
 } = require('../services/airtable-client');
-const { EVENTS } = require('@bot-whatsapp/bot')
-const { filterRecordsById, getFlow, getFields } = require('../tools/utils');
+
+const {
+  filterRecordsById,
+  getFlow,
+  getFields,
+  sleep,
+} = require('../tools/utils');
+
+const { addKeyword, EVENTS } = require('@bot-whatsapp/bot');
 const { greetingsPool } = require('../tools/greetings');
 const { flowTiendas } = require('./tiendas');
 const { flowCatalogo } = require('./catalogos');
 
+//Flows
 
-const flowDespedida = addKeyword(['LISTA_DE_OPCIONES'], {
+const flowDespedida = addKeyword(['SAYO_NARA'], {
   sensitive: true,
 })
   .addAction(async (_, { flowDynamic }) => {
+    console.log('Entré a flowDespedida');
     const flows = await airtableGet('flows');
     const mensaje = getFlow(getFields(flows), 'ayuda_adicional').texto;
     return await flowDynamic(mensaje);
-}).addAction(
-  { capture: true },
-  async (ctx, { flowDynamic, gotoFlow, state }) => {
-    if (
-      ctx.body === '1' ||
-      ctx.body === '2' 
-    ) {
+  })
+  .addAction({ capture: true }, async (ctx, { flowDynamic, gotoFlow }) => {
+    if (ctx.body === '1' || ctx.body === '2') {
       const opcion = parseInt(ctx.body);
       switch (opcion) {
         case 1:
@@ -39,11 +44,9 @@ const flowDespedida = addKeyword(['LISTA_DE_OPCIONES'], {
       const flows = await airtableGet('flows');
       const disculpa = getFlow(getFields(flows), 'fallback');
       await flowDynamic(disculpa);
-      return gotoFlow(flowOpciones);
+      return fallBack();
     }
-  }
-);
-
+  });
 
 const flowOpciones = addKeyword(['LISTA_DE_OPCIONES'], {
   sensitive: true,
@@ -100,27 +103,24 @@ const flowReclamosSugerencias = addKeyword(['RECLAMOS_SUGERENCIAS'])
     const mensaje = getFlow(getFields(flows), 'pregunta_reclamos').texto;
     return await flowDynamic(mensaje);
   })
-  .addAction(
-    { capture: true },
-    async (ctx, { gotoFlow, flowDynamic, state }) => {
-      await state.update({ queja: ctx.body });
-      const myState = state.getMyState();
-      airtableAnswers('conversaciones', myState, ctx);
-      queja = ctx.body;
-      const horaActual = new Date().getHours();
-      if (horaActual >= 7 && horaActual < 17) {
-        const flows = await airtableGet('flows');
-        const mensaje = getFlow(getFields(flows), 'horario');
-        await flowDynamic(mensaje.texto);
-      } else if (horaActual >= 17) {
-        const flows = await airtableGet('flows');
-        const mensaje = getFlow(getFields(flows), 'nhorario');
-        await flowDynamic(mensaje.texto);
-      } else {
-        return fallBack();
-      }
+  .addAction({ capture: true }, async (ctx, { flowDynamic, state }) => {
+    await state.update({ queja: ctx.body });
+    const myState = state.getMyState();
+    airtableAnswers('conversaciones', myState, ctx);
+    queja = ctx.body;
+    const horaActual = new Date().getHours();
+    if (horaActual >= 7 && horaActual < 17) {
+      const flows = await airtableGet('flows');
+      const mensaje = getFlow(getFields(flows), 'horario');
+      await flowDynamic(mensaje.texto);
+    } else if (horaActual >= 17) {
+      const flows = await airtableGet('flows');
+      const mensaje = getFlow(getFields(flows), 'nhorario');
+      await flowDynamic(mensaje.texto);
+    } else {
+      return fallBack();
     }
-  );
+  });
 
 const flowRegistro = addKeyword('USUARIOS_NO_REGISTRADOS')
   .addAction(async (_, { flowDynamic }) => {
@@ -154,10 +154,15 @@ const flowRegistro = addKeyword('USUARIOS_NO_REGISTRADOS')
       const mensaje = getFlow(getFields(flows), 'gracias').texto;
       await flowDynamic(mensaje);
       airtablePost('clientes', raw);
+      sleep(5000);
       const listaDeContactos = await airtableGet('clientes');
-      const nombreDeContacto = filterRecordsById(listaDeContactos, ctx.from,true);
-      let saludo = greetingsPool(nombreDeContacto);
-      await flowDynamic(saludo);
+      const nombreDeContacto = filterRecordsById(
+        listaDeContactos,
+        ctx.from,
+        true
+      );
+      let salu2 = `Listo! ${nombreDeContacto}, gracias por esperarme 😄! Ahora sí, dime como puedo ayudarte`;
+      await flowDynamic(salu2);
       return gotoFlow(flowOpciones);
     }
   );
@@ -165,7 +170,11 @@ const flowRegistro = addKeyword('USUARIOS_NO_REGISTRADOS')
 const flowPrincipal = addKeyword(EVENTS.WELCOME).addAction(
   async (ctx, { gotoFlow, flowDynamic, state }) => {
     const listaDeContactos = await airtableGet('clientes');
-    const nombreDeContacto = filterRecordsById(listaDeContactos, ctx.from,true);
+    const nombreDeContacto = filterRecordsById(
+      listaDeContactos,
+      ctx.from,
+      true
+    );
     if (nombreDeContacto) {
       let saludo = greetingsPool(nombreDeContacto);
       await flowDynamic(saludo);
@@ -183,5 +192,5 @@ module.exports = {
   flowOpciones,
   flowReclamosSugerencias,
   flowRegistro,
-  flowDespedida
+  flowDespedida,
 };

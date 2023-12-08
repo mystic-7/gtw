@@ -1,8 +1,11 @@
+//Importaciones
 const { addKeyword } = require('@bot-whatsapp/bot');
 const { airtableGet, airtableAnswers } = require('../services/airtable-client');
 const { createSortedList, getFlow, getFields } = require('../tools/utils');
 const { flowTiendas } = require('./tiendas');
+const { flowPuente } = require('./puente');
 
+//Flows
 const flowCatalogo = addKeyword(['LISTA_DE_CATALOGOS'], {
   sensitive: true,
 })
@@ -48,7 +51,7 @@ const flowCatalogo = addKeyword(['LISTA_DE_CATALOGOS'], {
   )
   .addAction(
     { capture: true },
-    async (ctx, { flowDynamic, fallBack, state, gotoFlow}) => {
+    async (ctx, { flowDynamic, fallBack, state, gotoFlow }) => {
       const flows = await airtableGet('flows');
       const disculpa = getFlow(getFields(flows), 'fallback');
       if (ctx.body === '1') {
@@ -58,10 +61,7 @@ const flowCatalogo = addKeyword(['LISTA_DE_CATALOGOS'], {
         await state.update({ cotizar: 'No' });
         const myState = state.getMyState();
         airtableAnswers('conversaciones', myState, ctx);
-        const flows = await airtableGet('flows');
-        const texto = getFlow(getFields(flows), 'despedida').texto;
-        const partes = texto.split(/\n\n/);
-        return await flowDynamic(partes);
+        return gotoFlow(flowPuente);
       } else {
         await flowDynamic(disculpa.texto);
         return fallBack();

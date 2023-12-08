@@ -1,7 +1,7 @@
 [handleMsg]:  { from: '584241604932', to: '584122650987', body: 'Hola' }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_43c4d81a-4942-4c94-b800-0a0dc991b1f3',
-  keyword: 'key_d1f58231-fc3e-4899-822d-3f4c5409ab3d',
+  ref: 'ans_39b79cf9-2ad6-42b8-b89d-710554d5375b',
+  keyword: 'key_082df73a-1617-4c0a-b2b4-151f4c23a8a9',
   answer: '__call_action__',
   options: {
     media: null,
@@ -15,6 +15,27 @@
     keyword: {},
     callback: true
   },
-  refSerialize: 'cb12eebb250b9d53673638df801668f4'
+  refSerialize: '85e83b96a87f4618589d41a95936c680'
 }
-[handleMsg]:  { from: '584241604932', to: '584122650987', body: 'Hola' }
+[handleMsg]:  { from: '584241604932', to: '584122650987', body: '2' }
+[handleMsg]:  { from: '584241604932', to: '584122650987', body: '3' }
+[QUEUE_SE_ENVIO]:  {
+  ref: 'ans_038a6e0e-abe8-4db5-ad32-fc1f3dd63eab',
+  keyword: 'ans_ed6b1089-d1e2-4d7f-8891-fbfa6edd9d76',
+  answer: '__capture_only_intended__',
+  options: {
+    media: null,
+    buttons: [],
+    capture: true,
+    child: null,
+    delay: 0,
+    idle: null,
+    ref: null,
+    nested: [],
+    keyword: {},
+    callback: true
+  },
+  refSerialize: '5e6b63cc228473abb89440d0876a4ea0'
+}
+[handleMsg]:  { from: '584241604932', to: '584122650987', body: '2' }
+[handleMsg]:  { from: '584241604932', to: '584122650987', body: '2' }
