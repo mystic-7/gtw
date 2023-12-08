@@ -17,16 +17,24 @@ const { greetingsPool } = require('../tools/greetings');
 const { flowTiendas } = require('./tiendas');
 const { flowCatalogo } = require('./catalogos');
 
+const { flowInactividad, 
+  startInactividad, 
+  resetInactividad, 
+  stopInactividad,
+} = require('../idleCasero');
+
 //Flows
 
 const flowDespedida = addKeyword(['SAYO_NARA'], {
   sensitive: true,
 })
   .addAction(async (_, { flowDynamic }) => {
-    console.log('Entré a flowDespedida');
     const flows = await airtableGet('flows');
     const mensaje = getFlow(getFields(flows), 'ayuda_adicional').texto;
     return await flowDynamic(mensaje);
+  })
+  .addAction(async (ctx, { gotoFlow }) => {
+    resetInactividad(ctx, gotoFlow);
   })
   .addAction({ capture: true }, async (ctx, { flowDynamic, gotoFlow }) => {
     if (
@@ -38,8 +46,10 @@ const flowDespedida = addKeyword(['SAYO_NARA'], {
       const opcion = parseInt(ctx.body);
       switch (opcion) {
         case 1:
+          stopInactividad(ctx)
           return gotoFlow(flowOpciones);
         case 2:
+          stopInactividad(ctx)
           const flows = await airtableGet('flows');
           const texto = getFlow(getFields(flows), 'despedida').texto;
           const partes = texto.split(/\n\n/);
@@ -56,10 +66,13 @@ const flowDespedida = addKeyword(['SAYO_NARA'], {
 const flowOpciones = addKeyword(['LISTA_DE_OPCIONES'], {
   sensitive: true,
 })
-  .addAction(async (_, { flowDynamic }) => {
+  .addAction(async (_, { flowDynamic}) => {
+    
     const flows = await airtableGet('flows');
     const mensaje = getFlow(getFields(flows), 'opciones').texto;
     return await flowDynamic(mensaje);
+  }).addAction(async (ctx, { gotoFlow }) => {
+    resetInactividad(ctx, gotoFlow);
   })
   .addAction(
     { capture: true },
@@ -75,21 +88,27 @@ const flowOpciones = addKeyword(['LISTA_DE_OPCIONES'], {
         const opcion = parseInt(ctx.body);
         switch (opcion) {
           case 1:
+            stopInactividad(ctx)
             await state.update({ motivo: 'Horarios y Ubicaciones' });
             return gotoFlow(flowTiendas);
           case 2:
+            stopInactividad(ctx)
             await state.update({ motivo: 'Catalogos' });
             return gotoFlow(flowCatalogo);
           case 3:
+            stopInactividad(ctx)
             await state.update({ motivo: 'Cotizar productos' });
             return gotoFlow(flowTiendas);
           case 4:
+            stopInactividad(ctx)
             await state.update({ motivo: 'Promociones' });
             return gotoFlow(flowTiendas);
           case 5:
+            stopInactividad(ctx)
             await state.update({ motivo: 'Disponibilidad' });
             return gotoFlow(flowTiendas);
           case 6:
+            stopInactividad(ctx)
             await state.update({ motivo: 'Reclamos' });
             return gotoFlow(flowReclamosSugerencias);
         }
@@ -107,6 +126,8 @@ const flowReclamosSugerencias = addKeyword(['RECLAMOS_SUGERENCIAS'])
     const flows = await airtableGet('flows');
     const mensaje = getFlow(getFields(flows), 'pregunta_reclamos').texto;
     return await flowDynamic(mensaje);
+  }).addAction(async (ctx, { gotoFlow }) => {
+    resetInactividad(ctx, gotoFlow);
   })
   .addAction({ capture: true }, async (ctx, { flowDynamic, state }) => {
     await state.update({ queja: ctx.body });
@@ -115,10 +136,12 @@ const flowReclamosSugerencias = addKeyword(['RECLAMOS_SUGERENCIAS'])
     queja = ctx.body;
     const horaActual = new Date().getHours();
     if (horaActual >= 7 && horaActual < 17) {
+      stopInactividad(ctx)
       const flows = await airtableGet('flows');
       const mensaje = getFlow(getFields(flows), 'horario');
       await flowDynamic(mensaje.texto);
     } else if (horaActual >= 17) {
+      stopInactividad(ctx)
       const flows = await airtableGet('flows');
       const mensaje = getFlow(getFields(flows), 'nhorario');
       await flowDynamic(mensaje.texto);
@@ -128,10 +151,15 @@ const flowReclamosSugerencias = addKeyword(['RECLAMOS_SUGERENCIAS'])
   });
 
 const flowRegistro = addKeyword('USUARIOS_NO_REGISTRADOS')
+  .addAction(async (ctx, { gotoFlow }) => {
+    resetInactividad(ctx, gotoFlow);
+  })
   .addAction(async (_, { flowDynamic }) => {
     const flows = await airtableGet('flows');
     const mensaje = getFlow(getFields(flows), 'registro').texto;
     return await flowDynamic(mensaje);
+  }).addAction(async (ctx, { gotoFlow }) => {
+    resetInactividad(ctx, gotoFlow);
   })
   .addAction({ capture: true }, async (ctx, { state, flowDynamic }) => {
     await state.update({ nombre: ctx.body });
@@ -142,6 +170,7 @@ const flowRegistro = addKeyword('USUARIOS_NO_REGISTRADOS')
   .addAction(
     { capture: true },
     async (ctx, { flowDynamic, gotoFlow, state }) => {
+      stopInactividad(ctx)
       if (ctx.body.includes('@')) {
         await state.update({ correo: ctx.body });
       } else {

@@ -6,6 +6,11 @@ const {
   flowRegistro,
   flowDespedida,
 } = require('./flows/main-flows');
+const { flowInactividad, 
+  startInactividad, 
+  resetInactividad, 
+  stopInactividad,
+} = require('./idleCasero');
 
 const { createBot, createProvider, createFlow } = require('@bot-whatsapp/bot');
 const { flowTiendas, flowSucursales } = require('./flows/tiendas');
@@ -28,6 +33,7 @@ const main = async () => {
     flowRegistro,
     flowDespedida,
     flowPuente,
+    flowInactividad
   ]);
 
   const adapterProvider = createProvider(TwilioProvider, {

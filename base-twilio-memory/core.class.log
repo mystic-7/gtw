@@ -1,7 +1,7 @@
-[handleMsg]:  { from: '584241604932', to: '584122650987', body: 'Hola' }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: 'fsdf' }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_39b79cf9-2ad6-42b8-b89d-710554d5375b',
-  keyword: 'key_082df73a-1617-4c0a-b2b4-151f4c23a8a9',
+  ref: 'ans_78d2d923-e0d4-417e-a3b0-a37be1051184',
+  keyword: 'key_90c0933d-f437-4d06-b841-ec21f04a4f61',
   answer: '__call_action__',
   options: {
     media: null,
@@ -15,18 +15,17 @@
     keyword: {},
     callback: true
   },
-  refSerialize: '85e83b96a87f4618589d41a95936c680'
+  refSerialize: '5104084982e18c4ceab94263e5d84ce6'
 }
-[handleMsg]:  { from: '584241604932', to: '584122650987', body: '2' }
-[handleMsg]:  { from: '584241604932', to: '584122650987', body: '3' }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: 'sfdf' }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_038a6e0e-abe8-4db5-ad32-fc1f3dd63eab',
-  keyword: 'ans_ed6b1089-d1e2-4d7f-8891-fbfa6edd9d76',
-  answer: '__capture_only_intended__',
+  ref: 'ans_78d2d923-e0d4-417e-a3b0-a37be1051184',
+  keyword: 'key_90c0933d-f437-4d06-b841-ec21f04a4f61',
+  answer: '__call_action__',
   options: {
     media: null,
     buttons: [],
-    capture: true,
+    capture: false,
     child: null,
     delay: 0,
     idle: null,
@@ -35,7 +34,6 @@
     keyword: {},
     callback: true
   },
-  refSerialize: '5e6b63cc228473abb89440d0876a4ea0'
+  refSerialize: '5104084982e18c4ceab94263e5d84ce6'
 }
-[handleMsg]:  { from: '584241604932', to: '584122650987', body: '2' }
-[handleMsg]:  { from: '584241604932', to: '584122650987', body: '2' }
+[handleMsg]:  { from: '584247182145', to: '14155238886', body: '6' }
