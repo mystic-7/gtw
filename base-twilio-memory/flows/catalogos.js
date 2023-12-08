@@ -4,12 +4,12 @@ const { airtableGet, airtableAnswers } = require('../services/airtable-client');
 const { createSortedList, getFlow, getFields } = require('../tools/utils');
 const { flowTiendas } = require('./tiendas');
 const { flowPuente } = require('./puente');
-const { flowInactividad, 
-  startInactividad, 
-  resetInactividad, 
+const {
+  flowInactividad,
+  startInactividad,
+  resetInactividad,
   stopInactividad,
-} = require('../idleCasero');
-
+} = require('../tools/idleCasero');
 
 //Flows
 const flowCatalogo = addKeyword(['LISTA_DE_CATALOGOS'], {
@@ -37,7 +37,7 @@ const flowCatalogo = addKeyword(['LISTA_DE_CATALOGOS'], {
       const flows = await airtableGet('flows');
       const disculpa = getFlow(getFields(flows), 'fallback');
       if (list.length > 0) {
-        stopInactividad(ctx)
+        stopInactividad(ctx);
         await state.update({ catalogo: list[0].nombre });
         await flowDynamic([
           {
@@ -66,11 +66,11 @@ const flowCatalogo = addKeyword(['LISTA_DE_CATALOGOS'], {
       const flows = await airtableGet('flows');
       const disculpa = getFlow(getFields(flows), 'fallback');
       if (ctx.body === '1') {
-        stopInactividad(ctx)
+        stopInactividad(ctx);
         await state.update({ cotizar: 'Si' });
         return gotoFlow(flowTiendas);
       } else if (ctx.body === '2') {
-        stopInactividad(ctx)
+        stopInactividad(ctx);
         await state.update({ cotizar: 'No' });
         const myState = state.getMyState();
         airtableAnswers('conversaciones', myState, ctx);

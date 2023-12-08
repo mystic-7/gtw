@@ -1,31 +1,11 @@
-
-const { addKeyword, EVENTS } = require("@bot-whatsapp/bot");
 //Importaciones
-const {
-  airtableGet,
-  airtablePost,
-  airtableAnswers,
-} = require('./services/airtable-client');
-
-const {
-  filterRecordsById,
-  getFlow,
-  getFields,
-  sleep,
-} = require('./tools/utils');
-
-const flowInactividad = addKeyword(EVENTS.ACTION).addAction(
-  async (ctx, { endFlow }) => {
-    const flows = await airtableGet('flows');
-    const mensaje = getFlow(getFields(flows), 'sesion_cerrada').texto;
-    return endFlow(mensaje);
-  }
-);
-
+const { addKeyword, EVENTS } = require('@bot-whatsapp/bot');
+const { airtableGet } = require('../services/airtable-client');
+const { getFlow, getFields } = require('./utils');
 
 // Objeto para almacenar temporizadores por usuario
 const timers = {};
-const time = 20000
+const time = 20000;
 
 // Función para iniciar el temporizador
 function startInactividad(ctx, gotoFlow) {
@@ -34,7 +14,6 @@ function startInactividad(ctx, gotoFlow) {
     // Aquí puedes manejar la lógica correspondiente al vencimiento del tiempo
   }, time);
 }
-
 
 // Función para reiniciar el temporizador
 function resetInactividad(ctx, gotoFlow) {
@@ -47,7 +26,6 @@ function resetInactividad(ctx, gotoFlow) {
   startInactividad(ctx, gotoFlow);
 }
 
-
 // Función para detener el temporizador
 function stopInactividad(ctx) {
   // Si hay un temporizador en marcha para el usuario, lo cancelamos
@@ -56,6 +34,14 @@ function stopInactividad(ctx) {
   }
 }
 
+//Flows
+const flowInactividad = addKeyword(EVENTS.ACTION).addAction(
+  async (ctx, { endFlow }) => {
+    const flows = await airtableGet('flows');
+    const mensaje = getFlow(getFields(flows), 'sesion_cerrada').texto;
+    return endFlow(mensaje);
+  }
+);
 
 module.exports = {
   startInactividad,
