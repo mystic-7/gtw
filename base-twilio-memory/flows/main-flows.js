@@ -29,7 +29,12 @@ const flowDespedida = addKeyword(['SAYO_NARA'], {
     return await flowDynamic(mensaje);
   })
   .addAction({ capture: true }, async (ctx, { flowDynamic, gotoFlow }) => {
-    if (ctx.body === '1' || ctx.body === '2') {
+    if (
+      ctx.body === '1' ||
+      ctx.body === '2' ||
+      ctx.body.toLowerCase() === 'si' ||
+      ctx.body.toLowerCase() === 'no'
+    ) {
       const opcion = parseInt(ctx.body);
       switch (opcion) {
         case 1:
