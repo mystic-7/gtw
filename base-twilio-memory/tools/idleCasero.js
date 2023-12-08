@@ -7,6 +7,15 @@ const { getFlow, getFields } = require('./utils');
 const timers = {};
 const time = 20000;
 
+//Flows
+const flowInactividad = addKeyword(EVENTS.ACTION).addAction(
+  async (ctx, { endFlow }) => {
+    const flows = await airtableGet('flows');
+    const mensaje = getFlow(getFields(flows), 'sesion_cerrada').texto;
+    return endFlow(mensaje);
+  }
+);
+
 // Función para iniciar el temporizador
 function startInactividad(ctx, gotoFlow) {
   timers[ctx.from] = setTimeout(() => {
@@ -33,15 +42,6 @@ function stopInactividad(ctx) {
     clearTimeout(timers[ctx.from]);
   }
 }
-
-//Flows
-const flowInactividad = addKeyword(EVENTS.ACTION).addAction(
-  async (ctx, { endFlow }) => {
-    const flows = await airtableGet('flows');
-    const mensaje = getFlow(getFields(flows), 'sesion_cerrada').texto;
-    return endFlow(mensaje);
-  }
-);
 
 module.exports = {
   startInactividad,

@@ -1,7 +1,7 @@
-[handleMsg]:  { from: '584247182145', to: '14155238886', body: 'fsdf' }
+[handleMsg]:  { from: '584241604932', to: '584122650987', body: 'hola' }
 [QUEUE_SE_ENVIO]:  {
-  ref: 'ans_78d2d923-e0d4-417e-a3b0-a37be1051184',
-  keyword: 'key_90c0933d-f437-4d06-b841-ec21f04a4f61',
+  ref: 'ans_51e9bbde-508d-410f-92e3-1897151a6ace',
+  keyword: 'key_829f51fc-6a54-4e6e-b25b-74b662c88411',
   answer: '__call_action__',
   options: {
     media: null,
@@ -15,25 +15,5 @@
     keyword: {},
     callback: true
   },
-  refSerialize: '5104084982e18c4ceab94263e5d84ce6'
+  refSerialize: 'a5eed2f5b5ccfdfd05500931c771fa49'
 }
-[handleMsg]:  { from: '584247182145', to: '14155238886', body: 'sfdf' }
-[QUEUE_SE_ENVIO]:  {
-  ref: 'ans_78d2d923-e0d4-417e-a3b0-a37be1051184',
-  keyword: 'key_90c0933d-f437-4d06-b841-ec21f04a4f61',
-  answer: '__call_action__',
-  options: {
-    media: null,
-    buttons: [],
-    capture: false,
-    child: null,
-    delay: 0,
-    idle: null,
-    ref: null,
-    nested: [],
-    keyword: {},
-    callback: true
-  },
-  refSerialize: '5104084982e18c4ceab94263e5d84ce6'
-}
-[handleMsg]:  { from: '584247182145', to: '14155238886', body: '6' }
