@@ -198,7 +198,9 @@ const flowRegistro = addKeyword('USUARIOS_NO_REGISTRADOS')
         ctx.from,
         true
       );
-      let salu2 = `Listo! ${nombreDeContacto}, gracias por esperarme 😄! Ahora sí, dime como puedo ayudarte`;
+      let salu2 = `Listo! ${
+        nombreDeContacto.split(' ')[0]
+      }, gracias por esperarme 😄! Ahora sí, dime como puedo ayudarte`;
       await flowDynamic(salu2);
       return gotoFlow(flowOpciones);
     }
@@ -213,7 +215,7 @@ const flowPrincipal = addKeyword(EVENTS.WELCOME).addAction(
       true
     );
     if (nombreDeContacto) {
-      let saludo = greetingsPool(nombreDeContacto);
+      let saludo = greetingsPool(nombreDeContacto.split(' ')[0]);
       await flowDynamic(saludo);
       state.clear();
       return gotoFlow(flowOpciones);
