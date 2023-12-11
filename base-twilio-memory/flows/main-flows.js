@@ -190,7 +190,7 @@ const flowRegistro = addKeyword('USUARIOS_NO_REGISTRADOS')
       const flows = await airtableGet('flows');
       const mensaje = getFlow(getFields(flows), 'gracias').texto;
       await flowDynamic(mensaje);
-      airtablePost('clientes', raw);
+      await airtablePost('clientes', raw);
       sleep(5000);
       const listaDeContactos = await airtableGet('clientes');
       const nombreDeContacto = filterRecordsById(
