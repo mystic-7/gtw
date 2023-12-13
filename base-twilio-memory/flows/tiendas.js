@@ -61,9 +61,9 @@ const flowSucursales = addKeyword(['LISTA_DE_TIENDAS'], {
           motivacion,
           tienda.direccion
         );
-        
+
         if (motivacion != 'Horarios y Ubicaciones'){
-          let alerta = generateAlert(nombreDeContacto,correoDeContacto,motivacion,tienda.nombre,ctx.from)
+          let alerta = generateAlert(nombreDeContacto,motivacion,tienda.nombre,ctx.from)
           sendMessage(tienda.telefonos_gerentes,alerta)
         }
 

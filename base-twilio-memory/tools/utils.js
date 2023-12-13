@@ -85,14 +85,8 @@ function generateStoreResponse(link, name, email, motive, address) {
 }
 
 
-function generateAlert(name, email, motive, sucursal,phone) {
-
-
-    return `El cliente ${name} con ${email} esta queriendo contactar la sucursal de ${sucursal} y quiere información sobre ${motive} 
-
-      dirigete a este link para iniciar una conversación con el cliente:
-      
-      https://api.whatsapp.com/send?phone=+${phone}`;
+function generateAlert(name, motive, sucursal,phone) {
+    return `El cliente ${name}, esta queriendo contactar la sucursal de ${sucursal} y quiere información sobre ${motive} dirigete a este link para iniciar una conversación con el cliente: \n\n https://api.whatsapp.com/send?phone=+${phone}`;
 }
 
 module.exports = {

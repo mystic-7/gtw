@@ -2,7 +2,6 @@ require('dotenv').config();
 
 async function sendMessage(numbers,mensaje) {
     try {
-        console.log(process.env.ACCOUNTSID)
         const accountSid = process.env.ACCOUNTSID;
         const authToken = process.env.AUTHTOKEN;
         const client = require('twilio')(accountSid, authToken);;
@@ -25,21 +24,3 @@ module.exports= {
     sendMessage
 };
 
-
-// const { airtableGet, airtableAnswers } = require('./services/airtable-client');
-// const {
-//     createSortedList,
-//     getFlow,
-//     getFields,
-//     filterRecordsById,
-//     generateStoreResponse,
-//   } = require('./tools/utils');
-
-
-// async function prueba(context, event, callback) {
-//     const sucursales = await airtableGet('sucursales');
-//     const tienda = getFlow(getFields(sucursales), 1);
-//     console.log(tienda.telefonos_gerentes[0])
-// }
-
-// prueba()
