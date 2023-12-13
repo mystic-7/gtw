@@ -65,11 +65,11 @@ const flowCatalogo = addKeyword(['LISTA_DE_CATALOGOS'], {
       resetInactividad(ctx, gotoFlow);
       const flows = await airtableGet('flows');
       const disculpa = getFlow(getFields(flows), 'fallback');
-      if (ctx.body === '1') {
+      if (ctx.body === '1' || ctx.body.toLowerCase() === 'si') {
         stopInactividad(ctx);
         await state.update({ cotizar: 'Si' });
         return gotoFlow(flowTiendas);
-      } else if (ctx.body === '2') {
+      } else if (ctx.body === '2' || ctx.body.toLowerCase() === 'no') {
         stopInactividad(ctx);
         await state.update({ cotizar: 'No' });
         const myState = state.getMyState();

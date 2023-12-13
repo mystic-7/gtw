@@ -5,7 +5,7 @@ const { getFlow, getFields } = require('./utils');
 
 // Objeto para almacenar temporizadores por usuario
 const timers = {};
-const time = 20000;
+const time = 60000;
 
 //Flows
 const flowInactividad = addKeyword(EVENTS.ACTION).addAction(
@@ -19,19 +19,18 @@ const flowInactividad = addKeyword(EVENTS.ACTION).addAction(
 // Función para iniciar el temporizador
 function startInactividad(ctx, gotoFlow) {
   timers[ctx.from] = setTimeout(() => {
-    return gotoFlow(flowInactividad); // 🚩🚩🚩 PEGA AQUÍ TU FLUJO (en mi caso flowInactividad)
-    // Aquí puedes manejar la lógica correspondiente al vencimiento del tiempo
+    return gotoFlow(flowInactividad); 
   }, time);
 }
 
 // Función para reiniciar el temporizador
 function resetInactividad(ctx, gotoFlow) {
-  // Si ya hay un temporizador en marcha para el usuario, lo cancelamos
+
   stopInactividad(ctx);
   if (timers[ctx.from]) {
     clearTimeout(timers[ctx.from]);
   }
-  // Iniciamos un nuevo temporizador
+
   startInactividad(ctx, gotoFlow);
 }
 
