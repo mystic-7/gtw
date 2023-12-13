@@ -11,10 +11,9 @@ async function sendMessage(numbers,mensaje) {
             const message = await client.messages.create({
                 'to': `whatsapp:${number}`,
                 'from': `whatsapp:+584122650987`,
-                'body': ' Prueba'
+                'body': `${mensaje}`
             });
-            console.log('message')
-            console.log(message)
+
         });
     }
     catch (error){
