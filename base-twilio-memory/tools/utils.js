@@ -84,6 +84,17 @@ function generateStoreResponse(link, name, email, motive, address) {
   }
 }
 
+
+function generateAlert(name, email, motive, sucursal,phone) {
+
+
+    return `El cliente ${name} con ${email} esta queriendo contactar la sucursal de ${sucursal} y quiere información sobre ${motive} 
+
+      dirigete a este link para iniciar una conversación con el cliente:
+      
+      https://api.whatsapp.com/send?phone=+${phone}`;
+}
+
 module.exports = {
   sleep,
   getRecordId,
@@ -92,4 +103,5 @@ module.exports = {
   filterRecordsById,
   createSortedList,
   generateStoreResponse,
+  generateAlert
 };

@@ -1,4 +1,5 @@
 //Importaciones
+require('dotenv').config();
 const {
   flowPrincipal,
   flowOpciones,
@@ -38,9 +39,9 @@ const main = async () => {
   ]);
 
   const adapterProvider = createProvider(TwilioProvider, {
-    accountSid: 'ACd9e32ec40f49a8c4d98094d7c9db205f',
-    authToken: 'c9dccdf4563cc3f6a3ad025c377db6fb',
-    vendorNumber: '+584122650987',
+    accountSid: process.env.ACCOUNTSID,
+    authToken: process.env.AUTHTOKEN,
+    vendorNumber: process.env.WHATSAPP_NUMBER,
   });
 
   createBot({
