@@ -17,7 +17,7 @@
         "axios": "^1.6.2",
         "body-parser": "^1.20.1",
         "polka": "^0.5.2",
-        "twilio": "^4.19.0"
+        "twilio": "^4.19.3"
     },
     "devDependencies": {
         "eslint": "^8.52.0",
