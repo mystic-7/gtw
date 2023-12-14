@@ -44,17 +44,16 @@ const flowDespedida = addKeyword(['SAYO_NARA'], {
       ctx.body.toLowerCase() === 'si' ||
       ctx.body.toLowerCase() === 'no'
     ) {
-      const opcion = parseInt(ctx.body);
-      switch (opcion) {
-        case 1:
-          stopInactividad(ctx);
-          return gotoFlow(flowOpciones);
-        case 2:
-          stopInactividad(ctx);
-          const flows = await airtableGet('flows');
-          const texto = getFlow(getFields(flows), 'despedida').texto;
-          const partes = texto.split(/\n\n/);
-          return await flowDynamic(partes);
+
+      if (ctx.body === '1' || ctx.body.toLowerCase() === 'si') {
+        stopInactividad(ctx);
+        return gotoFlow(flowOpciones);
+      } else if (ctx.body === '2' || ctx.body.toLowerCase() === 'no') {
+        stopInactividad(ctx);
+        const flows = await airtableGet('flows');
+        const texto = getFlow(getFields(flows), 'despedida').texto;
+        const partes = texto.split(/\n\n/);
+        return await flowDynamic(partes);
       }
     } else {
       const flows = await airtableGet('flows');
