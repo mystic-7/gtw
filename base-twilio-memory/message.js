@@ -5,6 +5,7 @@ const authToken = process.env.AUTHTOKEN;
 const client = require('twilio')(accountSid, authToken);
 
 async function sendMessage(numbers, mensaje) {
+  console.log(numbers);
   try {
     numbers.forEach(async (number) => {
       await client.messages.create({
