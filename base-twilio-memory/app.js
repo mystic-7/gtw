@@ -1,5 +1,12 @@
 //Importaciones
 require('dotenv').config();
+
+const { flowInactividad } = require('./tools/idleCasero');
+const { createBot, createProvider, createFlow } = require('@bot-whatsapp/bot');
+const { flowTiendas, flowSucursales } = require('./flows/tiendas');
+const { flowPuente } = require('./flows/puente');
+const { flowCatalogo } = require('./flows/catalogos');
+
 const {
   flowPrincipal,
   flowOpciones,
@@ -7,17 +14,6 @@ const {
   flowRegistro,
   flowDespedida,
 } = require('./flows/main-flows');
-const {
-  flowInactividad,
-  startInactividad,
-  resetInactividad,
-  stopInactividad,
-} = require('./tools/idleCasero');
-
-const { createBot, createProvider, createFlow } = require('@bot-whatsapp/bot');
-const { flowTiendas, flowSucursales } = require('./flows/tiendas');
-const { flowPuente } = require('./flows/puente');
-const { flowCatalogo } = require('./flows/catalogos');
 
 const TwilioProvider = require('@bot-whatsapp/provider/twilio');
 const MockAdapter = require('@bot-whatsapp/database/mock');

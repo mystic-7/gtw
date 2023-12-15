@@ -1,4 +1,10 @@
 //Importaciones
+const { addKeyword, EVENTS } = require('@bot-whatsapp/bot');
+const { greetingsPool } = require('../tools/greetings');
+const { flowTiendas } = require('./tiendas');
+const { flowCatalogo } = require('./catalogos');
+const { resetInactividad, stopInactividad } = require('../tools/idleCasero');
+
 const {
   airtableGet,
   airtablePost,
@@ -12,20 +18,7 @@ const {
   sleep,
 } = require('../tools/utils');
 
-const { addKeyword, EVENTS } = require('@bot-whatsapp/bot');
-const { greetingsPool } = require('../tools/greetings');
-const { flowTiendas } = require('./tiendas');
-const { flowCatalogo } = require('./catalogos');
-
-const {
-  flowInactividad,
-  startInactividad,
-  resetInactividad,
-  stopInactividad,
-} = require('../tools/idleCasero');
-
 //Flows
-
 const flowDespedida = addKeyword(['SAYO_NARA'], {
   sensitive: true,
 })
@@ -44,7 +37,6 @@ const flowDespedida = addKeyword(['SAYO_NARA'], {
       ctx.body.toLowerCase() === 'si' ||
       ctx.body.toLowerCase() === 'no'
     ) {
-
       if (ctx.body === '1' || ctx.body.toLowerCase() === 'si') {
         stopInactividad(ctx);
         return gotoFlow(flowOpciones);

@@ -1,7 +1,9 @@
 const { addKeyword } = require('@bot-whatsapp/bot');
 const { airtableGet, airtableAnswers } = require('../services/airtable-client');
 const { flowPuente } = require('./puente');
-const {sendMessage} = require('../message')
+const { sendMessage } = require('../message');
+const { resetInactividad, stopInactividad } = require('../tools/idleCasero');
+
 const {
   createSortedList,
   getFlow,
@@ -10,12 +12,6 @@ const {
   generateStoreResponse,
   generateAlert,
 } = require('../tools/utils');
-const {
-  flowInactividad,
-  startInactividad,
-  resetInactividad,
-  stopInactividad,
-} = require('../tools/idleCasero');
 
 let city;
 
@@ -62,12 +58,16 @@ const flowSucursales = addKeyword(['LISTA_DE_TIENDAS'], {
           tienda.direccion
         );
 
-        if (motivacion != 'Horarios y Ubicaciones'){
-          let alerta = generateAlert(nombreDeContacto,motivacion,tienda.nombre,ctx.from)
-          sendMessage(tienda.telefonos_gerentes,alerta)
+        if (motivacion != 'Horarios y Ubicaciones') {
+          let alerta = generateAlert(
+            nombreDeContacto,
+            motivacion,
+            tienda.nombre,
+            ctx.from
+          );
+          sendMessage(tienda.telefonos_gerentes, alerta);
         }
 
-        
         await flowDynamic(mensaje);
         return gotoFlow(flowPuente);
       } else {
