@@ -12,6 +12,8 @@ const {
   flowOpciones,
   flowReclamosSugerencias,
   flowRegistro,
+  flowAyuda,
+  flowSatisfaccion,
   flowDespedida,
 } = require('./flows/main-flows');
 
@@ -29,6 +31,8 @@ const main = async () => {
     flowSucursales,
     flowCatalogo,
     flowRegistro,
+    flowAyuda,
+    flowSatisfaccion,
     flowDespedida,
     flowPuente,
     flowInactividad,

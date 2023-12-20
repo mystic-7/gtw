@@ -21,6 +21,38 @@ const {
 //Flows
 const flowDespedida = addKeyword(['SAYO_NARA'], {
   sensitive: true,
+}).addAction(async (_, { flowDynamic }) => {
+  const flows = await airtableGet('flows');
+  const texto = getFlow(getFields(flows), 'despedida').texto;
+  const partes = texto.split(/\n\n/);
+  return await flowDynamic(partes);
+});
+
+const flowSatisfaccion = addKeyword(['SATIS_FAXION'], {
+  sensitive: true,
+})
+  .addAction(async (_, { flowDynamic }) => {
+    const flows = await airtableGet('flows');
+    const mensaje = getFlow(getFields(flows), 'satisfaccion').texto;
+    return await flowDynamic(mensaje);
+  })
+  .addAction({ capture: true }, async (ctx, { gotoFlow }) => {
+    if (
+      ctx.body === '1' ||
+      ctx.body === '2' ||
+      ctx.body.toLowerCase() === 'si' ||
+      ctx.body.toLowerCase() === 'no'
+    ) {
+      await state.update({ satisfaccion: true });
+      return gotoFlow(flowDespedida);
+    } else {
+      await state.update({ satisfaccion: false });
+      return gotoFlow(flowDespedida);
+    }
+  });
+
+const flowAyuda = addKeyword(['HALP'], {
+  sensitive: true,
 })
   .addAction(async (_, { flowDynamic }) => {
     const flows = await airtableGet('flows');
@@ -42,10 +74,7 @@ const flowDespedida = addKeyword(['SAYO_NARA'], {
         return gotoFlow(flowOpciones);
       } else if (ctx.body === '2' || ctx.body.toLowerCase() === 'no') {
         stopInactividad(ctx);
-        const flows = await airtableGet('flows');
-        const texto = getFlow(getFields(flows), 'despedida').texto;
-        const partes = texto.split(/\n\n/);
-        return await flowDynamic(partes);
+        return await gotoFlow(flowSatisfaccion);
       }
     } else {
       const flows = await airtableGet('flows');
@@ -220,5 +249,7 @@ module.exports = {
   flowOpciones,
   flowReclamosSugerencias,
   flowRegistro,
+  flowAyuda,
+  flowSatisfaccion,
   flowDespedida,
 };
