@@ -43,10 +43,10 @@ const flowSatisfaccion = addKeyword(['SATIS_FAXION'], {
       ctx.body.toLowerCase() === 'si' ||
       ctx.body.toLowerCase() === 'no'
     ) {
-      await state.update({ satisfaccion: true });
+      await state.update({ satisfaccion: 1 });
       return gotoFlow(flowDespedida);
     } else {
-      await state.update({ satisfaccion: false });
+      await state.update({ satisfaccion: 0 });
       return gotoFlow(flowDespedida);
     }
   });

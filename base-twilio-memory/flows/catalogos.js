@@ -62,11 +62,11 @@ const flowCatalogo = addKeyword(['LISTA_DE_CATALOGOS'], {
       const disculpa = getFlow(getFields(flows), 'fallback');
       if (ctx.body === '1' || ctx.body.toLowerCase() === 'si') {
         stopInactividad(ctx);
-        await state.update({ cotizar: true });
+        await state.update({ cotizar: 1 });
         return gotoFlow(flowTiendas);
       } else if (ctx.body === '2' || ctx.body.toLowerCase() === 'no') {
         stopInactividad(ctx);
-        await state.update({ cotizar: false });
+        await state.update({ cotizar: 0 });
         const myState = state.getMyState();
         airtableAnswers('conversaciones', myState, ctx);
         return gotoFlow(flowPuente);
