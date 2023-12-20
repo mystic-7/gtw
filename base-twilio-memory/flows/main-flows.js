@@ -36,7 +36,7 @@ const flowSatisfaccion = addKeyword(['SATIS_FAXION'], {
     const mensaje = getFlow(getFields(flows), 'satisfaccion').texto;
     return await flowDynamic(mensaje);
   })
-  .addAction({ capture: true }, async (ctx, { gotoFlow }) => {
+  .addAction({ capture: true }, async (ctx, { gotoFlow, state }) => {
     if (
       ctx.body === '1' ||
       ctx.body === '2' ||
