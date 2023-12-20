@@ -74,7 +74,7 @@ const flowAyuda = addKeyword(['HALP'], {
         return gotoFlow(flowOpciones);
       } else if (ctx.body === '2' || ctx.body.toLowerCase() === 'no') {
         stopInactividad(ctx);
-        return await gotoFlow(flowSatisfaccion);
+        return gotoFlow(flowSatisfaccion);
       }
     } else {
       const flows = await airtableGet('flows');
