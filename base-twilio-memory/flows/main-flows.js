@@ -16,7 +16,9 @@ const {
   getFlow,
   getFields,
   sleep,
+  generateAlert,
 } = require('../tools/utils');
+const { sendMessage } = require('../message');
 
 //Flows
 const flowDespedida = addKeyword(['SAYO_NARA'], {
@@ -172,9 +174,30 @@ const flowReclamosSugerencias = addKeyword(['RECLAMOS_SUGERENCIAS'])
       const horaActual = new Date().getHours();
       if (horaActual >= 7 && horaActual < 17) {
         stopInactividad(ctx);
+
         const flows = await airtableGet('flows');
         const mensaje = getFlow(getFields(flows), 'horario');
         await flowDynamic(mensaje.texto);
+
+        const myState = state.getMyState();
+        const motivacion = myState.motivo ? myState.motivo : '';
+        const listaDeContactos = await airtableGet('clientes');
+        const nombreDeContacto = filterRecordsById(
+          listaDeContactos,
+          ctx.from,
+          true
+        );
+        const alerta = generateAlert(
+          nombreDeContacto,
+          motivacion,
+          null,
+          ctx.from,
+          queja
+        );
+        const gerentes = await airtableGet('gerentes');
+        const atc = getFlow(getFields(gerentes), 1);
+        sendMessage(atc, alerta);
+
         return gotoFlow(flowAyuda);
       } else if (horaActual >= 17) {
         stopInactividad(ctx);
