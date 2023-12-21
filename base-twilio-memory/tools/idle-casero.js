@@ -1,6 +1,6 @@
 //Importaciones
 const { addKeyword, EVENTS } = require('@bot-whatsapp/bot');
-const { airtableGet } = require('../services/airtable-client');
+const { airtableGe, airtableAnswers } = require('../services/airtable-client');
 const { getFlow, getFields } = require('./utils');
 
 // Objeto para almacenar temporizadores por usuario
