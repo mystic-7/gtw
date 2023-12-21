@@ -1,7 +1,7 @@
 //Importaciones
 require('dotenv').config();
 
-const { flowInactividad } = require('./tools/idleCasero');
+const { flowInactividad } = require('./tools/idle-casero');
 const { createBot, createProvider, createFlow } = require('@bot-whatsapp/bot');
 const { flowTiendas, flowSucursales } = require('./flows/tiendas');
 const { flowPuente } = require('./flows/puente');

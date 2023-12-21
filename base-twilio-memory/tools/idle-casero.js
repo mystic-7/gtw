@@ -9,9 +9,12 @@ const time = 60000;
 
 //Flows
 const flowInactividad = addKeyword(EVENTS.ACTION).addAction(
-  async (ctx, { endFlow }) => {
+  async (_, { endFlow, state }) => {
+    await state.update({ incompleto: 1 });
     const flows = await airtableGet('flows');
     const mensaje = getFlow(getFields(flows), 'sesion_cerrada').texto;
+    const myState = state.getMyState();
+    airtableAnswers('conversaciones', myState, ctx);
     return endFlow(mensaje);
   }
 );
@@ -19,13 +22,12 @@ const flowInactividad = addKeyword(EVENTS.ACTION).addAction(
 // Función para iniciar el temporizador
 function startInactividad(ctx, gotoFlow) {
   timers[ctx.from] = setTimeout(() => {
-    return gotoFlow(flowInactividad); 
+    return gotoFlow(flowInactividad);
   }, time);
 }
 
 // Función para reiniciar el temporizador
 function resetInactividad(ctx, gotoFlow) {
-
   stopInactividad(ctx);
   if (timers[ctx.from]) {
     clearTimeout(timers[ctx.from]);

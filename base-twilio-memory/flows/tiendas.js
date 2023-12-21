@@ -2,7 +2,7 @@ const { addKeyword } = require('@bot-whatsapp/bot');
 const { airtableGet, airtableAnswers } = require('../services/airtable-client');
 const { flowPuente } = require('./puente');
 const { sendMessage } = require('../message');
-const { resetInactividad, stopInactividad } = require('../tools/idleCasero');
+const { resetInactividad, stopInactividad } = require('../tools/idle-casero');
 
 const {
   createSortedList,

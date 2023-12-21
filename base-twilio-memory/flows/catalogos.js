@@ -4,7 +4,7 @@ const { airtableGet, airtableAnswers } = require('../services/airtable-client');
 const { createSortedList, getFlow, getFields } = require('../tools/utils');
 const { flowTiendas } = require('./tiendas');
 const { flowPuente } = require('./puente');
-const { resetInactividad, stopInactividad } = require('../tools/idleCasero');
+const { resetInactividad, stopInactividad } = require('../tools/idle-casero');
 
 //Flows
 const flowCatalogo = addKeyword(['LISTA_DE_CATALOGOS'], {

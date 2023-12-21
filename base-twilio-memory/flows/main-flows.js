@@ -3,7 +3,7 @@ const { addKeyword, EVENTS } = require('@bot-whatsapp/bot');
 const { greetingsPool } = require('../tools/greetings');
 const { flowTiendas } = require('./tiendas');
 const { flowCatalogo } = require('./catalogos');
-const { resetInactividad, stopInactividad } = require('../tools/idleCasero');
+const { resetInactividad, stopInactividad } = require('../tools/idle-casero');
 
 const {
   airtableGet,
@@ -36,20 +36,28 @@ const flowSatisfaccion = addKeyword(['SATIS_FAXION'], {
     const mensaje = getFlow(getFields(flows), 'satisfaccion').texto;
     return await flowDynamic(mensaje);
   })
-  .addAction({ capture: true }, async (ctx, { gotoFlow, state }) => {
-    if (
-      ctx.body === '1' ||
-      ctx.body === '2' ||
-      ctx.body.toLowerCase() === 'si' ||
-      ctx.body.toLowerCase() === 'no'
-    ) {
-      await state.update({ satisfaccion: 1 });
-      return gotoFlow(flowDespedida);
-    } else {
-      await state.update({ satisfaccion: 0 });
-      return gotoFlow(flowDespedida);
+  .addAction(async (ctx, { gotoFlow }) => {
+    resetInactividad(ctx, gotoFlow);
+  })
+  .addAction(
+    { capture: true },
+    async (ctx, { flowDynamic, gotoFlow, state }) => {
+      if (ctx.body === '1' || ctx.body.toLowerCase() === 'si') {
+        await state.update({ satisfaccion: 1 });
+        stopInactividad(ctx);
+        return gotoFlow(flowDespedida);
+      } else if (ctx.body === '2' || ctx.body.toLowerCase() === 'no') {
+        await state.update({ satisfaccion: 0 });
+        stopInactividad(ctx);
+        return gotoFlow(flowDespedida);
+      } else {
+        const flows = await airtableGet('flows');
+        const disculpa = getFlow(getFields(flows), 'fallback');
+        await flowDynamic(disculpa);
+        return fallBack();
+      }
     }
-  });
+  );
 
 const flowAyuda = addKeyword(['HALP'], {
   sensitive: true,
