@@ -21,7 +21,7 @@ const airtable = async (method, url, body) => {
     const text = response.data;
     return text;
   } catch (err) {
-    throw err;
+    console.log(err);
   }
 };
 
@@ -64,8 +64,12 @@ async function airtableAnswers(table, myState, ctx) {
     },
     typecast: true,
   };
-  delete data.fields.nombre
-  delete data.fields.correo
+
+  delete data.fields.nombre;
+  delete data.fields.correo;
+
+  console.log(data);
+
   const result = await airtable(
     'POST',
     `https://api.airtable.com/v0/appbSfEIG0OB8UdVa/${table}`,
