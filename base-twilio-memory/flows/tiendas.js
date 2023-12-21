@@ -35,8 +35,6 @@ const flowSucursales = addKeyword(['LISTA_DE_TIENDAS'], {
       } else if (tienda.id_ciudad[0] === city) {
         stopInactividad(ctx);
         await state.update({ sucursal: tienda.nombre });
-        const myState = state.getMyState();
-        airtableAnswers('conversaciones', myState, ctx);
         var linkws = tienda.whalink ? tienda.whalink : '';
         var motivacion = myState.motivo ? myState.motivo : '';
         const listaDeContactos = await airtableGet('clientes');
@@ -122,8 +120,6 @@ const flowTiendas = addKeyword(['LISTA_DE_CIUDADES'], {
         stopInactividad(ctx);
         await state.update({ ciudad: ciudad.nombre });
         await state.update({ sucursal: ciudad.nombre_sucursales[0] });
-        const myState = state.getMyState();
-        airtableAnswers('conversaciones', myState, ctx);
         var linkws = ciudad.whalink ? ciudad.whalink : '';
         var motivacion = myState.motivo ? myState.motivo : '';
         const listaDeContactos = await airtableGet('clientes');

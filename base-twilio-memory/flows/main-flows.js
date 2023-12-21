@@ -22,6 +22,9 @@ const {
 const flowDespedida = addKeyword(['SAYO_NARA'], {
   sensitive: true,
 }).addAction(async (_, { flowDynamic }) => {
+  const myState = state.getMyState();
+  airtableAnswers('conversaciones', myState, ctx);
+
   const flows = await airtableGet('flows');
   const texto = getFlow(getFields(flows), 'despedida').texto;
   const partes = texto.split(/\n\n/);
@@ -43,11 +46,10 @@ const flowSatisfaccion = addKeyword(['SATIS_FAXION'], {
     { capture: true },
     async (ctx, { flowDynamic, gotoFlow, state }) => {
       if (ctx.body === '1' || ctx.body.toLowerCase() === 'si') {
-        await state.update({ satisfaccion: 1 });
+        await state.update({ satisfaccion: true });
         stopInactividad(ctx);
         return gotoFlow(flowDespedida);
       } else if (ctx.body === '2' || ctx.body.toLowerCase() === 'no') {
-        await state.update({ satisfaccion: 0 });
         stopInactividad(ctx);
         return gotoFlow(flowDespedida);
       } else {
@@ -79,6 +81,9 @@ const flowAyuda = addKeyword(['HALP'], {
     ) {
       if (ctx.body === '1' || ctx.body.toLowerCase() === 'si') {
         stopInactividad(ctx);
+        await state.update({ satisfaccion: true });
+        const myState = state.getMyState();
+        airtableAnswers('conversaciones', myState, ctx);
         return gotoFlow(flowOpciones);
       } else if (ctx.body === '2' || ctx.body.toLowerCase() === 'no') {
         stopInactividad(ctx);
@@ -159,26 +164,29 @@ const flowReclamosSugerencias = addKeyword(['RECLAMOS_SUGERENCIAS'])
   .addAction(async (ctx, { gotoFlow }) => {
     resetInactividad(ctx, gotoFlow);
   })
-  .addAction({ capture: true }, async (ctx, { flowDynamic, state }) => {
-    await state.update({ queja: ctx.body });
-    const myState = state.getMyState();
-    airtableAnswers('conversaciones', myState, ctx);
-    queja = ctx.body;
-    const horaActual = new Date().getHours();
-    if (horaActual >= 7 && horaActual < 17) {
-      stopInactividad(ctx);
-      const flows = await airtableGet('flows');
-      const mensaje = getFlow(getFields(flows), 'horario');
-      await flowDynamic(mensaje.texto);
-    } else if (horaActual >= 17) {
-      stopInactividad(ctx);
-      const flows = await airtableGet('flows');
-      const mensaje = getFlow(getFields(flows), 'nhorario');
-      await flowDynamic(mensaje.texto);
-    } else {
-      return fallBack();
+  .addAction(
+    { capture: true },
+    async (ctx, { gotoFlow, flowDynamic, state }) => {
+      await state.update({ queja: ctx.body });
+      queja = ctx.body;
+      const horaActual = new Date().getHours();
+      if (horaActual >= 7 && horaActual < 17) {
+        stopInactividad(ctx);
+        const flows = await airtableGet('flows');
+        const mensaje = getFlow(getFields(flows), 'horario');
+        await flowDynamic(mensaje.texto);
+        return gotoFlow(flowAyuda);
+      } else if (horaActual >= 17) {
+        stopInactividad(ctx);
+        const flows = await airtableGet('flows');
+        const mensaje = getFlow(getFields(flows), 'nhorario');
+        await flowDynamic(mensaje.texto);
+        return gotoFlow(flowAyuda);
+      } else {
+        return fallBack();
+      }
     }
-  });
+  );
 
 const flowRegistro = addKeyword('USUARIOS_NO_REGISTRADOS')
   .addAction(async (ctx, { gotoFlow }) => {
