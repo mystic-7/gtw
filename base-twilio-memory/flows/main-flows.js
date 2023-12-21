@@ -81,13 +81,21 @@ const flowAyuda = addKeyword(['HALP'], {
       ctx.body.toLowerCase() === 'si' ||
       ctx.body.toLowerCase() === 'no'
     ) {
-      if (ctx.body === '1' || ctx.body.toLowerCase() === 'si') {
+      if (
+        ctx.body === '1' ||
+        ctx.body.toLowerCase() === 'si' ||
+        ctx.body === '✅'
+      ) {
         stopInactividad(ctx);
         await state.update({ satisfaccion: true });
         const myState = state.getMyState();
         airtableAnswers('conversaciones', myState, ctx);
         return gotoFlow(flowOpciones);
-      } else if (ctx.body === '2' || ctx.body.toLowerCase() === 'no') {
+      } else if (
+        ctx.body === '2' ||
+        ctx.body.toLowerCase() === 'no' ||
+        ctx.body === '❌'
+      ) {
         stopInactividad(ctx);
         return gotoFlow(flowSatisfaccion);
       }
