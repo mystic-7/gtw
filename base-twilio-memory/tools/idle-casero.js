@@ -9,7 +9,7 @@ const time = 60000;
 
 //Flows
 const flowInactividad = addKeyword(EVENTS.ACTION).addAction(
-  async (_, { endFlow, state }) => {
+  async (ctx, { endFlow, state }) => {
     await state.update({ incompleto: true });
     const flows = await airtableGet('flows');
     const mensaje = getFlow(getFields(flows), 'sesion_cerrada').texto;

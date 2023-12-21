@@ -68,8 +68,6 @@ async function airtableAnswers(table, myState, ctx) {
   delete data.fields.nombre;
   delete data.fields.correo;
 
-  console.log(data);
-
   const result = await airtable(
     'POST',
     `https://api.airtable.com/v0/appbSfEIG0OB8UdVa/${table}`,
