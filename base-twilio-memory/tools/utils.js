@@ -88,7 +88,7 @@ function generateAlert(name, motive, sucursal, phone, complaint) {
   if (sucursal != null) {
     return `El cliente *${name}* esta queriendo contactar la sucursal de ${sucursal} y quiere información sobre *${motive}* dirigete a este link para iniciar una conversación con el cliente: \n\n https://api.whatsapp.com/send?phone=+${phone}`;
   } else {
-    return `El cliente *${name}* me contactó con la siguiente queja *${complaint}* dirigete a este link para iniciar una conversación con el cliente: \n\n https://api.whatsapp.com/send?phone=+${phone}`;
+    return `El cliente *${name}* me contactó con la siguiente queja\n\n*${complaint}*\n\ndirigete a este link para iniciar una conversación con el cliente: \n\n https://api.whatsapp.com/send?phone=+${phone}`;
   }
 }
 
