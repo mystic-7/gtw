@@ -21,7 +21,7 @@ const {
 //Flows
 const flowDespedida = addKeyword(['SAYO_NARA'], {
   sensitive: true,
-}).addAction(async (_, { flowDynamic }) => {
+}).addAction(async (_, { flowDynamic, state }) => {
   const myState = state.getMyState();
   airtableAnswers('conversaciones', myState, ctx);
 
