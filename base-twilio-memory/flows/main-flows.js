@@ -171,7 +171,7 @@ const flowReclamosSugerencias = addKeyword(['RECLAMOS_SUGERENCIAS'])
     async (ctx, { gotoFlow, flowDynamic, state }) => {
       await state.update({ queja: ctx.body });
       queja = ctx.body;
-      const horaActual = new Date().getHours();
+      const horaActual = new Date().getHours() - 4;
       if (horaActual >= 7 && horaActual < 17) {
         stopInactividad(ctx);
 
