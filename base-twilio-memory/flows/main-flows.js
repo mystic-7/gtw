@@ -74,13 +74,9 @@ const flowAyuda = addKeyword(['HALP'], {
   .addAction(async (ctx, { gotoFlow }) => {
     resetInactividad(ctx, gotoFlow);
   })
-  .addAction({ capture: true }, async (ctx, { flowDynamic, gotoFlow }) => {
-    if (
-      ctx.body === '1' ||
-      ctx.body === '2' ||
-      ctx.body.toLowerCase() === 'si' ||
-      ctx.body.toLowerCase() === 'no'
-    ) {
+  .addAction(
+    { capture: true },
+    async (ctx, { flowDynamic, gotoFlow, state }) => {
       if (
         ctx.body === '1' ||
         ctx.body.toLowerCase() === 'si' ||
@@ -90,6 +86,7 @@ const flowAyuda = addKeyword(['HALP'], {
         await state.update({ satisfaccion: true });
         const myState = state.getMyState();
         airtableAnswers('conversaciones', myState, ctx);
+        await flowDynamic('Seguro!');
         return gotoFlow(flowOpciones);
       } else if (
         ctx.body === '2' ||
@@ -98,14 +95,14 @@ const flowAyuda = addKeyword(['HALP'], {
       ) {
         stopInactividad(ctx);
         return gotoFlow(flowSatisfaccion);
+      } else {
+        const flows = await airtableGet('flows');
+        const disculpa = getFlow(getFields(flows), 'fallback');
+        await flowDynamic(disculpa);
+        return fallBack();
       }
-    } else {
-      const flows = await airtableGet('flows');
-      const disculpa = getFlow(getFields(flows), 'fallback');
-      await flowDynamic(disculpa);
-      return fallBack();
     }
-  });
+  );
 
 const flowOpciones = addKeyword(['LISTA_DE_OPCIONES'], {
   sensitive: true,
