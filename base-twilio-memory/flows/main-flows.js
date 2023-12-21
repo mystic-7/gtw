@@ -195,10 +195,9 @@ const flowReclamosSugerencias = addKeyword(['RECLAMOS_SUGERENCIAS'])
           queja
         );
         const gerentes = await airtableGet('gerentes');
-        const atc = getFlow(getFields(gerentes), 1);
-        const numeros = [];
-        numeros.push(atc);
-        sendMessage(numeros, alerta);
+        const atc = getFlow(getFields(gerentes), 1).telefono;
+        const numero = [atc];
+        sendMessage(numero, alerta);
 
         return gotoFlow(flowAyuda);
       } else if (horaActual >= 17) {
