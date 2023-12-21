@@ -195,7 +195,7 @@ const flowReclamosSugerencias = addKeyword(['RECLAMOS_SUGERENCIAS'])
           queja
         );
         const gerentes = await airtableGet('gerentes');
-        const atc = getFlow(getFields(gerentes), 1);
+        const atc = [getFlow(getFields(gerentes), 1)];
         sendMessage(atc, alerta);
 
         return gotoFlow(flowAyuda);
