@@ -3,6 +3,10 @@ function sleep(milliseconds) {
 }
 
 function getRecordId(records) {
+  console.log('records.records')
+  console.log(records.records)
+  console.log('records.records[0]')
+  console.log(records.records[0])
   return records.records[0].id;
 }
 
