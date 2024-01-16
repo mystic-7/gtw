@@ -46,7 +46,7 @@ const flowSatisfaccion = addKeyword(['SATIS_FAXION'], {
   })
   .addAction(
     { capture: true },
-    async (ctx, { flowDynamic, gotoFlow, state }) => {
+    async (ctx, { flowDynamic, gotoFlow, state,fallBack }) => {
       if (ctx.body === '1' || ctx.body.toLowerCase() === 'si') {
         await state.update({ satisfaccion: true });
         stopInactividad(ctx);
@@ -76,7 +76,7 @@ const flowAyuda = addKeyword(['HALP'], {
   })
   .addAction(
     { capture: true },
-    async (ctx, { flowDynamic, gotoFlow, state }) => {
+    async (ctx, { flowDynamic, gotoFlow, state,fallBack }) => {
       if (
         ctx.body === '1' ||
         ctx.body.toLowerCase() === 'si' ||
@@ -173,7 +173,7 @@ const flowReclamosSugerencias = addKeyword(['RECLAMOS_SUGERENCIAS'])
   })
   .addAction(
     { capture: true },
-    async (ctx, { gotoFlow, flowDynamic, state }) => {
+    async (ctx, { gotoFlow, flowDynamic, state,fallBack }) => {
       await state.update({ queja: ctx.body });
       queja = ctx.body;
       const horaActual = new Date().getHours() - 4;
