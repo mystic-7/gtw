@@ -59,11 +59,13 @@ async function airtableAnswers(table, myState, ctx) {
 
   let data = {
     fields: {
-      ...(cliente.length >= 1 && { clientes: [getRecordId(cliente)] }),
+      ...(cliente.length > 0 && { clientes: [getRecordId(cliente)] }),
       ...myState,
     },
     typecast: true,
   };
+
+  console.log(cliente, cliente.length, data);
 
   delete data.fields.nombre;
   delete data.fields.correo;
