@@ -59,7 +59,7 @@ async function airtableAnswers(table, myState, ctx) {
 
   let data = {
     fields: {
-      ...(cliente.length > 0 && { clientes: [getRecordId(cliente)] }),
+      ...(cliente.records.length > 0 && { clientes: [getRecordId(cliente)] }),
       ...myState,
     },
     typecast: true,
