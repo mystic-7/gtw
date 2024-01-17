@@ -65,8 +65,6 @@ async function airtableAnswers(table, myState, ctx) {
     typecast: true,
   };
 
-  console.log(cliente, cliente.length, data);
-
   delete data.fields.nombre;
   delete data.fields.correo;
 
