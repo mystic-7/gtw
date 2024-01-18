@@ -56,15 +56,20 @@ const flowSucursales = addKeyword(['LISTA_DE_TIENDAS'], {
           motivacion,
           tienda.direccion
         );
-
-        if (motivacion != 'Horarios y Ubicaciones') {
+        const horaActual = new Date().getHours() - 4;
+        if (
+          motivacion != 'Horarios y Ubicaciones' &&
+          city === 1 &&
+          horaActual >= 7 &&
+          horaActual < 17
+        ) {
           let alerta = generateAlert(
             nombreDeContacto,
             motivacion,
             tienda.nombre,
             ctx.from
           );
-          if (horaActual >= 7 && horaActual < 17) {
+          {
             sendMessage(tienda.telefonos_gerentes, alerta);
           }
         }

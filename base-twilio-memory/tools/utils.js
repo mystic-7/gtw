@@ -72,15 +72,21 @@ function generateStoreResponse(link, name, email, motive, address) {
     return `${address} ${walink}`;
   }
 
-  switch (motive) {
-    case 'Horarios y Ubicaciones':
-      return address;
-    case 'Cotizar productos':
-      return `${address}\n\nPronto te escribiran de esta sucursal para ayudarte con la cotización que necesitas 😄`;
-    case 'Promociones':
-      return `${address}\n\nPronto te escribiran de esta sucursal para comentarte sobre nuestras promociones 😄`;
-    case 'Disponibilidad':
-      return `${address}\n\nPronto te escribiran de esta sucursal, comentales que producto estás buscando y ellos te daran información sobre su disponibilidad😄`;
+  const horaActual = new Date().getHours() - 4;
+  if (horaActual >= 7 && horaActual < 17) {
+    switch (motive) {
+      case 'Horarios y Ubicaciones':
+        return address;
+      case 'Cotizar productos':
+        return `${address}\n\nPronto te escribiran de esta sucursal para ayudarte con la cotización que necesitas 😄`;
+      case 'Promociones':
+        return `${address}\n\nPronto te escribiran de esta sucursal para comentarte sobre nuestras promociones 😄`;
+      case 'Disponibilidad':
+        return `${address}\n\nPronto te escribiran de esta sucursal, comentales que producto estás buscando y ellos te daran información sobre su disponibilidad😄`;
+    }
+  } else {
+    return `Estimado cliente, hasta este punto puedo acompañarte! A partir de acá tu solicitud debe ser atendida por uno de nuestros agentes de tienda y actualmente la tienda se encuentra cerrada.\n\n
+    Porfavor escribenos mañana dentro de nuestro horario de atención y con gusto podré remitirle tu solicitud a nuestro equipo!`;
   }
 }
 
