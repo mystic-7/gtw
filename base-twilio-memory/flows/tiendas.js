@@ -64,7 +64,9 @@ const flowSucursales = addKeyword(['LISTA_DE_TIENDAS'], {
             tienda.nombre,
             ctx.from
           );
-          sendMessage(tienda.telefonos_gerentes, alerta);
+          if (horaActual >= 7 && horaActual < 17) {
+            sendMessage(tienda.telefonos_gerentes, alerta);
+          }
         }
 
         await flowDynamic(mensaje);
