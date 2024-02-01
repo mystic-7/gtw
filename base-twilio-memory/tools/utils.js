@@ -55,15 +55,27 @@ function createSortedList(records) {
 }
 
 function createWaLink(link, name, email, motive) {
-  const walink =
+  try {
+    const walink =
+      link +
+      `&text=Hola%20soy%20${name.replace(/\s/g, '%20')},` +
+      (email === undefined ? '' : '%20mi%20correo%20es%20' + email + '%20y') +
+      `%20quisiera%20saber%20informaci%C3%B3n%20sobre%20${motive.replace(
+        /\s/g,
+        '%20'
+      )}`;
+    return walink;
+  } catch (error) {
+    console.log(error);
+    const walink =
     link +
-    `&text=Hola%20soy%20${name.replace(/\s/g, '%20')},` +
-    (email === undefined ? '' : '%20mi%20correo%20es%20' + email + '%20y') +
-    `%20quisiera%20saber%20informaci%C3%B3n%20sobre%20${motive.replace(
+    `&text=Hola%20` + `quisiera%20saber%20informaci%C3%B3n%20sobre%20${motive.replace(
       /\s/g,
       '%20'
     )}`;
-  return walink;
+    return walink;
+  }
+
 }
 
 function generateStoreResponse(link, name, email, motive, address) {
