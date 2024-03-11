@@ -77,4 +77,39 @@ async function airtableAnswers(table, myState, ctx) {
   return result;
 }
 
-module.exports = { airtableGet, airtableGetOne, airtablePost, airtableAnswers };
+const airtableGetAll = async (method, table) => {
+  var offset = 0
+  var list_rows = []
+  while (true) {
+    const config = {
+      method: method,
+      url: `https://api.airtable.com/v0/appbSfEIG0OB8UdVa/${table}?offset=${offset}`,
+      headers: {
+        'Content-type': 'application/json',
+        Accept: 'application/json',
+        Authorization:
+          'Bearer patbAqdmJO0ntHHYL.e784ce069516df6c8f7cbcda8279ed0ca28cae0d4f1b1f0a3320c6d7529e0f14',
+      },
+    };
+    console.log(`https://api.airtable.com/v0/appbSfEIG0OB8UdVa/${table}?offset=${offset}`)
+    if(offset === undefined){
+      break
+    }
+    try {
+      var response = await axios.request(config);
+      list_rows.push(response.data.records)
+      try{
+        offset = response.data.offset
+      } catch (err) {
+        // console.log(err);
+        break
+      } 
+    } catch (err) {
+      // console.log(err);
+    }
+  };
+  return list_rows
+}
+
+
+module.exports = { airtableGet, airtableGetOne, airtablePost, airtableAnswers,airtableGetAll };

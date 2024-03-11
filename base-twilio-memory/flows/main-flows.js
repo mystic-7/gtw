@@ -9,6 +9,8 @@ const {
   airtableGet,
   airtablePost,
   airtableAnswers,
+  airtableGetOne,
+  airtableGetAll,
 } = require('../services/airtable-client');
 
 const {
@@ -257,7 +259,7 @@ const flowRegistro = addKeyword('USUARIOS_NO_REGISTRADOS')
       await flowDynamic(mensaje);
       await airtablePost('clientes', raw);
       sleep(5000);
-      const listaDeContactos = await airtableGet('clientes');
+      const listaDeContactos = await airtableGetOne('clientes', ctx.from);
       const nombreDeContacto = filterRecordsById(
         listaDeContactos,
         ctx.from,
@@ -271,7 +273,7 @@ const flowRegistro = addKeyword('USUARIOS_NO_REGISTRADOS')
 
 const flowPrincipal = addKeyword(EVENTS.WELCOME).addAction(
   async (ctx, { gotoFlow, flowDynamic, state }) => {
-    const listaDeContactos = await airtableGet('clientes');
+    const listaDeContactos = await airtableGetOne('clientes', ctx.from);
     const nombreDeContacto = filterRecordsById(
       listaDeContactos,
       ctx.from,
@@ -288,6 +290,22 @@ const flowPrincipal = addKeyword(EVENTS.WELCOME).addAction(
   }
 );
 
+
+
+const flowPromocional = addKeyword("PROMO-MESSAGE-MARKETING").addAction(
+  async (ctx, { gotoFlow, flowDynamic, state }) => {
+    const flows = await airtableGet('flows');
+    const listaDeContactos = await airtableGetAll("GET","clientes");
+    const promo_message = getFlow(getFields(flows), 'marketing_promo').texto;
+    for (const innerList of listaDeContactos) {
+      for (const item of innerList) {
+          sendMessage("584241604932", promo_message);
+          sendMessage("584247182145", promo_message);
+          break
+  }   
+  }
+});
+
 module.exports = {
   flowPrincipal,
   addKeyword,
@@ -297,4 +315,5 @@ module.exports = {
   flowAyuda,
   flowSatisfaccion,
   flowDespedida,
+  flowPromocional,
 };
