@@ -116,13 +116,6 @@ const flowTiendas = addKeyword(['LISTA_DE_CIUDADES'], {
         stopInactividad(ctx);
         await state.update({ ciudad: ciudad.nombre });
         const sucursales = await airtableGet('sucursales');
-        console.log('sucursales')
-        console.log(sucursales)
-        console.log('city')
-        console.log(city)
-        console.log('getFields(sucursales)')
-        console.log(getFields(sucursales))
-
         const list = createSortedList(
           getFields(sucursales).filter((r) => r.id_ciudad.includes(city))
         );
