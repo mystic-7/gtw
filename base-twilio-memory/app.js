@@ -15,6 +15,7 @@ const {
   flowAyuda,
   flowSatisfaccion,
   flowDespedida,
+  flowPromocional,
 } = require('./flows/main-flows');
 
 const TwilioProvider = require('@bot-whatsapp/provider/twilio');
@@ -36,6 +37,7 @@ const main = async () => {
     flowDespedida,
     flowPuente,
     flowInactividad,
+    flowPromocional
   ]);
 
   const adapterProvider = createProvider(TwilioProvider, {
