@@ -299,10 +299,7 @@ const flowPromocional = addKeyword("PROMO-MESSAGE-MARKETING").addAction(
     const promo_message = getFlow(getFields(flows), 'marketing_promo').texto;
     for (const innerList of listaDeContactos) {
       for (const item of innerList) {
-          console.log(typeof item)
-          console.log(item)
-          sendMessage(["584247182145"], promo_message);
-          break
+          sendMessage([item.fields.id], promo_message);
   }   
   }
 });
