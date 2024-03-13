@@ -302,9 +302,11 @@ const flowPromocional = addKeyword("PROMO-MESSAGE-MARKETING").addAction(
       for (const item of innerList) {
           conteo++
           if (conteo % 25 === 0) {
-            await sleep(5000)
+            await sleep(30000)
+            console.log(conteo)
             sendMessage([item.fields.id], promo_message);
           }else{
+            console.log(conteo)
             sendMessage([item.fields.id], promo_message);
           }
   }   
