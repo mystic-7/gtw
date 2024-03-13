@@ -297,9 +297,16 @@ const flowPromocional = addKeyword("PROMO-MESSAGE-MARKETING").addAction(
     const flows = await airtableGet('flows');
     const listaDeContactos = await airtableGetAll("GET","clientes");
     const promo_message = getFlow(getFields(flows), 'marketing_promo').texto;
+    var conteo = 0
     for (const innerList of listaDeContactos) {
       for (const item of innerList) {
-          sendMessage([item.fields.id], promo_message);
+          conteo++
+          if (conteo % 25 === 0) {
+            await sleep(5000)
+            sendMessage([item.fields.id], promo_message);
+          }else{
+            sendMessage([item.fields.id], promo_message);
+          }
   }   
   }
 });
