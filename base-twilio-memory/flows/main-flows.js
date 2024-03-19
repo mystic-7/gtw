@@ -144,6 +144,13 @@ const flowOpciones = addKeyword(['LISTA_DE_OPCIONES'], {
             return gotoFlow(flowTiendas);
           case 4:
             stopInactividad(ctx);
+            const promo_message = getFlow(getFields(flows), 'marketing_promo').texto
+            if (promo_message.length > 1) {
+              await flowDynamic(promo_message);
+            } else {
+              console.log('Sin mensaje promocional')
+              console.log(promo_message)
+            }
             await state.update({ motivo: 'Promociones' });
             return gotoFlow(flowTiendas);
           case 5:
