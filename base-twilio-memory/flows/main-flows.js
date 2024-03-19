@@ -144,6 +144,7 @@ const flowOpciones = addKeyword(['LISTA_DE_OPCIONES'], {
             return gotoFlow(flowTiendas);
           case 4:
             stopInactividad(ctx);
+            const flows = await airtableGet('flows');
             const promo_message = getFlow(getFields(flows), 'marketing_promo').texto
             if (promo_message.length > 1) {
               await flowDynamic(promo_message);
